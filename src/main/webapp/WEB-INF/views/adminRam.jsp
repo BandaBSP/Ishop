@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="/admin">Go to Admin panel</a>
 	<form action="/admin/ram" method="post">
 		<table>
 			<tr>
