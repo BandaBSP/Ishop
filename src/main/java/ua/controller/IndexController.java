@@ -30,7 +30,11 @@ public class IndexController {
 	public String showAdminTypeProcessor() {
 		return "admintypeprocessor";
 	}
-
+	
+	@RequestMapping("/admin—oreProcessor")
+	public String showAdmin—oreProcessor() {
+		return "admincoreprocessor";
+	}
 
 	
 }

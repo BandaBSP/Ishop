@@ -10,6 +10,7 @@
 <p>Admin panel</p>
 <a href="/admin/ram">Ram</a>
 <a href="/admin/typeprocessor">Type Processors</a>
+<a href="/admin/coreprocessor">Core Processors</a>
 <a href="/admin/videoadapter">Video Adapter</a>
 </body>
 </html>
