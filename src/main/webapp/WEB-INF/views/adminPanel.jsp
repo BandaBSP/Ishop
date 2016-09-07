@@ -12,5 +12,6 @@
 <a href="/admin/typeprocessor">Type Processors</a>
 <a href="/admin/coreprocessor">Core Processors</a>
 <a href="/admin/videoadapter">Video Adapter</a>
+<a href="/admin/processor">Processors</a>
 </body>
 </html>

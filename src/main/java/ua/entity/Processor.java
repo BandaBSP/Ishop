@@ -40,6 +40,12 @@ public class Processor {
 		this.komputers = komputers;
 	}
 
+	public Processor(ÑoreProcessor coreprocessor, TypeProcessor typeprocessor) {
+		super();
+		this.coreprocessor = coreprocessor;
+		this.typeprocessor = typeprocessor;
+	}
+
 	public int getId() {
 		return id;
 	}
