@@ -15,4 +15,6 @@ public interface TypeProcessorService {
 	List<TypeProcessor> findAll();
 
 	void delete(int id);
+
+	TypeProcessor findOne(int id);
 }

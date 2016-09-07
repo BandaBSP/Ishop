@@ -44,4 +44,9 @@ public class TypeProcessorImpl implements TypeProcessorService {
 		typeprocessorRepository.delete(id);
 	}
 
+	@Override
+	public TypeProcessor findOne(int id) {
+		return typeprocessorRepository.findOne(id);
+	}
+
 }

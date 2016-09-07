@@ -55,10 +55,6 @@ public class ProcessorImpl implements ProcessorService {
 
 	@Override
 	public ProcessorForm findForForm(int id) {
-		Processor typeprocessor = processorRepository
-				.findOneTypeProcessorInited(id);
-		Processor coreprocessor = processorRepository
-				.findOneTypeProcessorInited(id);
 		ProcessorForm form = new ProcessorForm();
 		form.setId(form.getId());
 		form.setTypeprocessor(form.getTypeprocessor());

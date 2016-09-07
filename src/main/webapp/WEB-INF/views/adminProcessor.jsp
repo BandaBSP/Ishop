@@ -13,9 +13,9 @@
 		<form:errors path="*" />
 		<form:hidden path="id" />
 		<table>
-			<%-- 	<tr>
+			<tr>
 				<td><form:select path="typeprocessor">
-				<option value="0">Type Processor</option>
+						<option value="0">Type Processor</option>
 						<c:forEach items="${typeprocessors}" var="typeprocessor">
 							<c:choose>
 								<c:when test="${typeprocessor.id eq form.typeprocessor.id}">
@@ -28,9 +28,9 @@
 						</c:forEach>
 					</form:select></td>
 			</tr>
-				<tr>
+			<tr>
 				<td><form:select path="coreprocessor">
-				<option value="0">Сore Processor</option>
+						<option value="0">Сore Processor</option>
 						<c:forEach items="${coreprocessors}" var="coreprocessor">
 							<c:choose>
 								<c:when test="${coreprocessor.id eq form.coreprocessor.id}">
@@ -42,35 +42,19 @@
 							</c:choose>
 						</c:forEach>
 					</form:select></td>
-			</tr> --%>
+			</tr>
 			<tr>
 				<td><input type="submit"></td>
 			</tr>
 		</table>
-
-		<form action="/admin/typeprocessor" method="post">
-			<table>
-				<tr>
-					<td><input name="name"></td>
-				</tr>
-
-			</table>
-		</form>
-		<form action="/admin/coreprocessor" method="post">
-			<table>
-				<tr>
-					<td><input name="core"></td>
-				</tr>
-			</table>
-		</form>
 	</form:form>
 	<table>
 		<c:forEach items="${processors}" var="processor">
 
 
 			<tr>
-				<td>${processor.id}</td>
-
+				 <td>${processor.coreprocessor.core}</td> 
+				 <td>${processor.typeprocessor.name}</td> 
 			</tr>
 		</c:forEach>
 

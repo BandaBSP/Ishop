@@ -19,11 +19,11 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 	private ÑoreProcessorRepository coreprocessorRepository;
 
 	@Override
-	public void save(int core) {
+	public void save(ÑoreProcessorForm form) {
 		ÑoreProcessor coreprocessor = new ÑoreProcessor();
-		coreprocessor.setCore(core);
+		coreprocessor.setCore(Integer.parseInt(form.getCore()));
 		coreprocessorRepository.save(coreprocessor);
-		
+
 	}
 
 	@Override
@@ -43,16 +43,16 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 
 	@Override
 	public ÑoreProcessor findOne(Integer valueOf) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public ÑoreProcessorForm findForForm(int id) {
-		ÑoreProcessorForm form = new ÑoreProcessorForm();
-		form.setId(form.getId());
-		form.setCore(form.getCore());
-		return form;
+		return coreprocessorRepository.findOne(valueOf);
 	}
 
+	@Override
+	public ÑoreProcessorForm findForForm(ÑoreProcessorForm form) {
+		ÑoreProcessor core = coreprocessorRepository.findOne(form);
+		ÑoreProcessorForm forma = new ÑoreProcessorForm();
+		forma.setId(core.getId());
+		forma.setCore(String.valueOf(core.getCore()));
+		return form;
+	}
 
 }

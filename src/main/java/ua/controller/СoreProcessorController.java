@@ -36,14 +36,14 @@ public class —oreProcessorController {
 	}
 	
 	@RequestMapping(value= "/admin/coreprocessor", method=RequestMethod.POST)
-	public String show—oreProcessor(@RequestParam int core){
-		coreprocessorService.save(core);
+	public String show—oreProcessor(@ModelAttribute("form") —oreProcessorForm form){
+		coreprocessorService.save(form);
 		return "redirect:/admin/coreprocessor";
 	}
 	
 	@RequestMapping(value="/admin/coreprocessor/update/{id}")
-	public String update(Model model, @PathVariable int id){
-		model.addAttribute("form", coreprocessorService.findForForm(id));
+	public String update(Model model, @ModelAttribute("form") —oreProcessorForm form){
+		model.addAttribute("form", coreprocessorService.findForForm(form));
 		model.addAttribute("coreprocessors", coreprocessorService.findAll());
 		return "admincoreprocessor";
 	}

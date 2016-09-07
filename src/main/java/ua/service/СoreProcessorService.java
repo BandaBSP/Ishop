@@ -7,7 +7,7 @@ import ua.form.ÑoreProcessorForm;
 
 public interface ÑoreProcessorService {
 
-void save(int core);
+void save(ÑoreProcessorForm form);
 	
 	void delete(int core);
 	
@@ -17,5 +17,5 @@ void save(int core);
 
 	ÑoreProcessor findOne(Integer valueOf);
 
-	ÑoreProcessorForm findForForm(int id);
+	ÑoreProcessorForm findForForm(ÑoreProcessorForm form);
 }

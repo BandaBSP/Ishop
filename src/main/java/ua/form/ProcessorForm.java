@@ -10,8 +10,6 @@ public class ProcessorForm {
 	private ÑoreProcessor coreprocessor;
 	
 	private TypeProcessor typeprocessor;
-	
-	private String path;
 
 	public int getId() {
 		return id;
@@ -36,15 +34,4 @@ public class ProcessorForm {
 	public void setTypeprocessor(TypeProcessor typeprocessor) {
 		this.typeprocessor = typeprocessor;
 	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	
-	
 }
