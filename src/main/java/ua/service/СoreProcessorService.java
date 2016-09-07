@@ -3,18 +3,19 @@ package ua.service;
 import java.util.List;
 
 import ua.entity.ÑoreProcessor;
+import ua.form.ÑoreProcessorForm;
 
 public interface ÑoreProcessorService {
 
-	void save(int core);
-
-	ÑoreProcessor findOne1(int core);
-
-	void delete1(int core);
-
+void save(int core);
+	
+	void delete(int core);
+	
 	List<ÑoreProcessor> findAll();
 
-	void delete(int id);
+	void deleteId(int id);
 
-	ÑoreProcessor findOne(int core);
+	ÑoreProcessor findOne(Integer valueOf);
+
+	ÑoreProcessorForm findForForm(int id);
 }
