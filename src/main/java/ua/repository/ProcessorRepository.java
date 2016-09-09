@@ -7,8 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import ua.entity.Processor;
 
-
-public interface ProcessorRepository extends JpaRepository<Processor, Integer>{
+public interface ProcessorRepository extends JpaRepository<Processor, Integer> {
 
 	@Query("SELECT ai FROM Processor ai LEFT JOIN FETCH "
 			+ "ai.typeprocessor LEFT JOIN FETCH ai.coreprocessor")

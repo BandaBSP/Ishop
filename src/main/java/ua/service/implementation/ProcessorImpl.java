@@ -32,25 +32,25 @@ public class ProcessorImpl implements ProcessorService {
 
 	@Override
 	public void save(ProcessorForm form) {
-		Processor processor = new Processor(new ÑoreProcessor(), new TypeProcessor());
+		Processor processor = new Processor(new ÑoreProcessor(),
+				new TypeProcessor());
 		processor.setCoreprocessor(form.getCoreprocessor());
 		processor.setTypeprocessor(form.getTypeprocessor());
 		processor.setId(form.getId());
-		System.out.print(form.getCoreprocessor()+" "+form.getTypeprocessor()+" "+form.getId());
+		System.out.print(form.getCoreprocessor() + " "
+				+ form.getTypeprocessor() + " " + form.getId());
 		processorRepository.save(processor);
 
 	}
 
 	@Override
 	public List<Processor> findAll() {
-
 		return processorRepository.findAll();
 	}
 
 	@Override
 	public void delete(int id) {
 		processorRepository.delete(id);
-
 	}
 
 	@Override
@@ -60,6 +60,11 @@ public class ProcessorImpl implements ProcessorService {
 		form.setTypeprocessor(form.getTypeprocessor());
 		form.setCoreprocessor(form.getCoreprocessor());
 		return form;
+	}
+
+	@Override
+	public Processor findOne(Integer valueOf) {
+		return processorRepository.findOne(valueOf);
 	}
 
 }

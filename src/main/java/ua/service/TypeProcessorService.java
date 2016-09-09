@@ -3,18 +3,19 @@ package ua.service;
 import java.util.List;
 
 import ua.entity.TypeProcessor;
+import ua.form.TypeProcessorForm;
 
 public interface TypeProcessorService {
 
-	void save(String name);
+	void save(TypeProcessorForm form);
 
-	TypeProcessor findByName(String name);
-
-	void delete(String name);
+	void delete(int id);
 
 	List<TypeProcessor> findAll();
 
-	void delete(int id);
+	TypeProcessor findOne(Integer valueOf);
+
+	TypeProcessorForm findForForm(int id);
 
 	TypeProcessor findOne(int id);
 }

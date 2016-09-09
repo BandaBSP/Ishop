@@ -1,10 +1,9 @@
 package ua.form;
 
-
 public class ÑoreProcessorForm {
 
 	private int id;
-	
+
 	private String core;
 
 	public int getId() {

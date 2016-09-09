@@ -5,7 +5,7 @@ import java.beans.PropertyEditorSupport;
 import ua.entity.TypeProcessor;
 import ua.service.TypeProcessorService;
 
-public class TypeProcessorEditor extends PropertyEditorSupport{
+public class TypeProcessorEditor extends PropertyEditorSupport {
 
 	private final TypeProcessorService typeprocessorService;
 
@@ -15,7 +15,8 @@ public class TypeProcessorEditor extends PropertyEditorSupport{
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		TypeProcessor typeprocessor = typeprocessorService.findOne(Integer.valueOf(text));
+		TypeProcessor typeprocessor = typeprocessorService.findOne(Integer
+				.valueOf(text));
 		setValue(typeprocessor);
 	}
 }

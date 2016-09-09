@@ -13,6 +13,11 @@
 		<form:errors path="*" />
 		<form:hidden path="id" />
 		<table>
+			<a href="/admin">Go to Admin panel</a>
+			<tr>
+				<th>Type Processor</th>
+				<th>Сore Processor</th>
+			</tr>
 			<tr>
 				<td><form:select path="typeprocessor">
 						<option value="0">Type Processor</option>
@@ -46,19 +51,22 @@
 			<tr>
 				<td><input type="submit"></td>
 			</tr>
+
 		</table>
 	</form:form>
 	<table>
+		<tr>
+			<td>core</td>
+			<td>type</td>
+		</tr>
 		<c:forEach items="${processors}" var="processor">
-
-
 			<tr>
-				 <td>${processor.coreprocessor.core}</td> 
-				 <td>${processor.typeprocessor.name}</td> 
+				<td>${processor.coreprocessor.core}</td>
+				<td>${processor.typeprocessor.name}</td>
+				<td><a href="/admin/processor/delete/${processor.id}">delete</a></td>
+				<td><a href="/admin/processor/update/${processor.id}">update</a></td>
 			</tr>
 		</c:forEach>
-
 	</table>
-
 </body>
 </html>

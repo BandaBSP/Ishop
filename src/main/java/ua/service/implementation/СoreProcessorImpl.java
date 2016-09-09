@@ -21,14 +21,14 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 	@Override
 	public void save(ÑoreProcessorForm form) {
 		ÑoreProcessor coreprocessor = new ÑoreProcessor();
+		coreprocessor.setId(form.getId());
 		coreprocessor.setCore(Integer.parseInt(form.getCore()));
 		coreprocessorRepository.save(coreprocessor);
-
 	}
 
 	@Override
-	public void delete(int core) {
-		coreprocessorRepository.delete(core);
+	public void delete(int id) {
+		coreprocessorRepository.delete(id);
 	}
 
 	@Override
@@ -37,22 +37,27 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 	}
 
 	@Override
-	public void deleteId(int id) {
-		coreprocessorRepository.delete(id);
-	}
-
-	@Override
 	public ÑoreProcessor findOne(Integer valueOf) {
 		return coreprocessorRepository.findOne(valueOf);
 	}
 
 	@Override
-	public ÑoreProcessorForm findForForm(ÑoreProcessorForm form) {
-		ÑoreProcessor core = coreprocessorRepository.findOne(form);
+	public ÑoreProcessorForm findForForm(int id) {
+		ÑoreProcessor core = coreprocessorRepository.findOne(id);
 		ÑoreProcessorForm forma = new ÑoreProcessorForm();
 		forma.setId(core.getId());
 		forma.setCore(String.valueOf(core.getCore()));
-		return form;
+		return forma;
+	}
+
+	public ÑoreProcessor findOne(int id) {
+		return coreprocessorRepository.findOne(id);
+	}
+
+	@Override
+	public ÑoreProcessorForm findForForm(ÑoreProcessorForm form) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,22 +1,21 @@
 package ua.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import ua.entity.ÑoreProcessor;
-import ua.form.ÑoreProcessorForm;
+
+public interface ÑoreProcessorRepository extends	JpaRepository<ÑoreProcessor, Integer> {
 
 
-public interface ÑoreProcessorRepository extends JpaRepository<ÑoreProcessor, Integer>{
+	// default void delete(int core){
+	// delete(findByName(core));
+	// }
 
-ÑoreProcessor findOne(ÑoreProcessorForm form);
-//	
-//	default void delete(int core){
-//		delete(findOne(core));
-//	}
-//	
-//
-//	@Modifying
-//	@Query("DELETE  FROM ÑoreProcessor  t where t.core=:core")
-//	void deleteOne(@Param("core") int core);
+	@Modifying
+	@Query("DELETE  FROM ÑoreProcessor  t where t.core=:core")
+	void deleteByName(@Param("core") int core);
 
 }

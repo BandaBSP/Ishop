@@ -7,15 +7,14 @@ import ua.form.ProcessorForm;
 
 public interface ProcessorService {
 
-	
-	
 	void save(ProcessorForm form);
-
 
 	ProcessorForm findForForm(int id);
 
+	void delete(int id);
+
+	Processor findOne(Integer valueOf);
 
 	List<Processor> findAll();
 
-	void delete(int id);
 }

@@ -7,9 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(indexes = { @Index(columnList = "hddGb") })
 public class Hdd {
 
 	@Id
@@ -18,12 +21,11 @@ public class Hdd {
 
 	private TypeHdd typeHdd;
 
+	private int hddGb;
+
 	public TypeHdd getTypeHdd() {
 		return typeHdd;
 	}
-
-	 
-	 
 
 	public Hdd(int id, TypeHdd typeHdd, int hddGb, List<Komputer> komputers) {
 		super();
@@ -33,10 +35,6 @@ public class Hdd {
 		this.komputers = komputers;
 	}
 
-
-
-	private int hddGb;
-
 	public Hdd() {
 		super();
 	}
@@ -44,9 +42,6 @@ public class Hdd {
 	public void setTypeHdd(TypeHdd typeHdd) {
 		this.typeHdd = typeHdd;
 	}
-
-
-
 
 	public Hdd(int hdd) {
 		this.hddGb = hdd;

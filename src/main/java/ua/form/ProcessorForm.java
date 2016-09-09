@@ -6,9 +6,9 @@ import ua.entity.ÑoreProcessor;
 public class ProcessorForm {
 
 	private int id;
-	
+
 	private ÑoreProcessor coreprocessor;
-	
+
 	private TypeProcessor typeprocessor;
 
 	public int getId() {

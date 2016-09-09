@@ -3,10 +3,10 @@ package ua.service;
 import java.util.List;
 
 import ua.entity.VideoAdapter;
+import ua.form.VideoAdapterForm;
 
 public interface VideoAdapterService {
 
-	void save(String name);
 
 	VideoAdapter findByName(String name);
 
@@ -15,4 +15,8 @@ public interface VideoAdapterService {
 	List<VideoAdapter> findAll();
 
 	void delete(int id);
+
+	void save(VideoAdapterForm form);
+
+	VideoAdapterForm findForForm(int id);
 }

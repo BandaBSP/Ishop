@@ -13,11 +13,11 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	private int price;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Komputer komputer;
 
@@ -64,6 +64,5 @@ public class User {
 	public void setKomputer(Komputer komputer) {
 		this.komputer = komputer;
 	}
-	
-	
+
 }

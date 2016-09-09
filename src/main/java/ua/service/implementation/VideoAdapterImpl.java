@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.entity.VideoAdapter;
+import ua.form.VideoAdapterForm;
 import ua.repository.VideoAdapterRepository;
 import ua.service.VideoAdapterService;
 
@@ -18,9 +19,10 @@ public class VideoAdapterImpl implements VideoAdapterService {
 	private VideoAdapterRepository videoadapterRepository;
 
 	@Override
-	public void save(String name) {
+	public void save(VideoAdapterForm form) {
 		VideoAdapter videoadapter = new VideoAdapter();
-		videoadapter.setName(name);
+		videoadapter.setId(form.getId());
+		videoadapter.setName(form.getName());
 		videoadapterRepository.save(videoadapter);
 	}
 
@@ -42,6 +44,15 @@ public class VideoAdapterImpl implements VideoAdapterService {
 	@Override
 	public void delete(int id) {
 		videoadapterRepository.delete(id);
+	}
+
+	@Override
+	public VideoAdapterForm findForForm(int id) {
+		VideoAdapter name = videoadapterRepository.findOne(id);
+		VideoAdapterForm form = new VideoAdapterForm();
+		form.setId(name.getId());
+		form.setName(name.getName());
+		return form;
 	}
 
 }

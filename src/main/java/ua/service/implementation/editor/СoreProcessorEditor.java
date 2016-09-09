@@ -5,7 +5,7 @@ import java.beans.PropertyEditorSupport;
 import ua.entity.ÑoreProcessor;
 import ua.service.ÑoreProcessorService;
 
-public class ÑoreProcessorEditor extends PropertyEditorSupport{
+public class ÑoreProcessorEditor extends PropertyEditorSupport {
 
 	private final ÑoreProcessorService coreprocessorService;
 
@@ -15,7 +15,8 @@ public class ÑoreProcessorEditor extends PropertyEditorSupport{
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		ÑoreProcessor coreprocessor = coreprocessorService.findOne(Integer.valueOf(text));
+		ÑoreProcessor coreprocessor = coreprocessorService.findOne(Integer
+				.valueOf(text));
 		setValue(coreprocessor);
 	}
 }

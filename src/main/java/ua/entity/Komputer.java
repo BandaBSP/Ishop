@@ -21,7 +21,6 @@ public class Komputer {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Hdd hdd;
 
-	@ManyToOne(fetch = FetchType.LAZY)
 	private OpticalDrive opticaldrive;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -119,6 +118,5 @@ public class Komputer {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
 
 }

@@ -30,33 +30,36 @@ public class ProcessorController {
 
 	@Autowired
 	private TypeProcessorService typeprocessorService;
-	
+
+
 	@Autowired
 	private ÑoreProcessorService coreprocessorService;
-	
+
 	@InitBinder("form")
-	protected void initBinder(WebDataBinder binder){
-	   binder.registerCustomEditor(ÑoreProcessor.class, new ÑoreProcessorEditor(coreprocessorService));
-	   binder.registerCustomEditor(TypeProcessor.class, new TypeProcessorEditor(typeprocessorService));
-//	   binder.setValidator(new ÑoreProcessorFormValidator(recipeService));
+	protected void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(ÑoreProcessor.class,
+				new ÑoreProcessorEditor(coreprocessorService));
+		binder.registerCustomEditor(TypeProcessor.class,
+				new TypeProcessorEditor(typeprocessorService));
+		// binder.setValidator(new ÑoreProcessorFormValidator(recipeService));
 	}
-	
+
 	@ModelAttribute("form")
-	public ProcessorForm getForm(){
+	public ProcessorForm getForm() {
 		return new ProcessorForm();
 	}
-	
+
 	@RequestMapping("/admin/processor")
-	public String showProcessor(Model model){
+	public String showProcessor(Model model) {
 		model.addAttribute("processors", processorService.findAll());
 		model.addAttribute("typeprocessors", typeprocessorService.findAll());
 		model.addAttribute("coreprocessors", coreprocessorService.findAll());
 		return "adminProcessor";
 	}
-	
-	@RequestMapping(value="/admin/processor", method=RequestMethod.POST)
-	public String save(@ModelAttribute("form") @Valid ProcessorForm form, BindingResult br, Model model){
-		if(br.hasErrors()){
+
+	@RequestMapping(value = "/admin/processor", method = RequestMethod.POST)
+	public String save(@ModelAttribute("form") @Valid ProcessorForm form,BindingResult br, Model model) {
+		if (br.hasErrors()) {
 			model.addAttribute("processors", processorService.findAll());
 			model.addAttribute("typeprocessors", typeprocessorService.findAll());
 			model.addAttribute("coreprocessors", coreprocessorService.findAll());
@@ -65,25 +68,20 @@ public class ProcessorController {
 		processorService.save(form);
 		return "redirect:/admin/processor";
 	}
-	
+
 	@RequestMapping(value = "/admin/processor/update/{id}")
 	public String update(Model model, @PathVariable int id) {
+		model.addAttribute("form", processorService.findForForm(id));
 		model.addAttribute("processors", processorService.findAll());
 		model.addAttribute("typeprocessors", typeprocessorService.findAll());
 		model.addAttribute("coreprocessors", coreprocessorService.findAll());
 		return "adminProcessor";
 	}
-	
-	@RequestMapping(value="/admin/processor/delete/{id}")
-	public String delete(@PathVariable int id){
+
+	@RequestMapping(value = "/admin/processor/delete/{id}")
+	public String delete(@PathVariable int id) {
 		processorService.delete(id);
 		return "redirect:/admin/processor";
 	}
-	
-	
-	
-	
-	
-	
-}
 
+}

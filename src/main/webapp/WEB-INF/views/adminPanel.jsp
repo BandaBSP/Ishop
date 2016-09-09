@@ -8,10 +8,11 @@
 </head>
 <body>
 <p>Admin panel</p>
-<a href="/admin/ram">Ram</a>
-<a href="/admin/typeprocessor">Type Processors</a>
-<a href="/admin/coreprocessor">Core Processors</a>
-<a href="/admin/videoadapter">Video Adapter</a>
-<a href="/admin/processor">Processors</a>
+<p><a href="/admin/ram">Ram</a></p>
+<p><a href="/admin/typeprocessor">Type Processors</a></p>
+<p><a href="/admin/coreprocessor">Core Processors</a>
+<p><a href="/admin/videoadapter">Video Adapter</a>
+<p><a href="/admin/processor">Processors</a>
+<p><a href="/admin/hdd">Hdd</a>
 </body>
 </html>

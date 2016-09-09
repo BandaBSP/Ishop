@@ -10,12 +10,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form action="/admin/coreprocessor" method="post" modelAttribute="form">
+	<form:form action="/admin/coreprocessor" method="post"
+		modelAttribute="form">
+		<form:hidden path="id"/>
 		<table>
-		<tr>
+			<a href="/admin">Go to Admin panel</a>
+			<tr>
 				<td><form:input path="core" placeholder="core name" /></td>
 			</tr>
-			
+
 			<tr>
 				<td><input type="submit" value="Записати в базу"></td>
 			</tr>

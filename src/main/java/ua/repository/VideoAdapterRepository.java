@@ -7,16 +7,15 @@ import org.springframework.data.repository.query.Param;
 
 import ua.entity.VideoAdapter;
 
+public interface VideoAdapterRepository extends
+		JpaRepository<VideoAdapter, Integer> {
 
-public interface VideoAdapterRepository extends JpaRepository<VideoAdapter, Integer>{
-
-	
 	VideoAdapter findByName(String name);
-	
-	default void delete(String name){
+
+	default void delete(String name) {
 		delete(findByName(name));
 	}
-	
+
 	@Modifying
 	@Query("DELETE  FROM VideoAdapter  t where t.name=:name")
 	void deleteByName(@Param("name") String name);
