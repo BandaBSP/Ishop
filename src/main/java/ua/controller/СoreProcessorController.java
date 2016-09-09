@@ -23,7 +23,6 @@ public class ÑoreProcessorController {
 	@ModelAttribute("form")
 	public ÑoreProcessorForm getForm() {
 		return new ÑoreProcessorForm();
-		
 	}
 
 	@RequestMapping("/admin/coreprocessor")

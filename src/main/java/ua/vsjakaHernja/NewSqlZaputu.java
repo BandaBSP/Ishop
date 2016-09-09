@@ -1,4 +1,4 @@
-package ua.vsjakaHernja;
+/*package ua.vsjakaHernja;
 
 import java.util.Arrays;
 import java.util.List;
@@ -218,4 +218,4 @@ public class NewSqlZaputu {
 
 	}
 
-}
+}*/

@@ -1,4 +1,4 @@
-package ua.vsjakaHernja;
+/*package ua.vsjakaHernja;
 
 import java.util.List;
 import java.util.Scanner;
@@ -295,3 +295,4 @@ public class Client {
 	}
 
 }
+*/

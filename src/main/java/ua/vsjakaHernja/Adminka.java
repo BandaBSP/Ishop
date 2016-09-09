@@ -1,4 +1,4 @@
-package ua.vsjakaHernja;
+/*package ua.vsjakaHernja;
 
 import java.util.Scanner;
 
@@ -217,12 +217,7 @@ public class Adminka {
 		komputer222.setVideoadapter(videoadapter);
 		em.persist(videoadapter);
 
-		// komputer.setOpticaldrive(opticaldrive1);
-		System.out.println("Enter boolean optikal drive");
-		OpticalDrive opticaldrive = new OpticalDrive();
-		opticaldrive.setOpticalDrive(SC.nextBoolean());
-		komputer222.setOpticaldrive(opticaldrive);
-		em.persist(opticaldrive);
+
 
 		System.out.println("Enter price komputer$");
 		komputer222.setPrice(SC.nextInt());
@@ -235,3 +230,4 @@ public class Adminka {
 	}
 
 }
+*/

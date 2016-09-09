@@ -1,4 +1,4 @@
-package ua.vsjakaHernja;
+/*package ua.vsjakaHernja;
 
 import java.util.Scanner;
 
@@ -53,3 +53,4 @@ public class Korustuva4 {
 		}
 	}
 }
+*/

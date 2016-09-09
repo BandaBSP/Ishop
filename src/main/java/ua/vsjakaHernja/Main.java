@@ -1,4 +1,4 @@
-package ua.vsjakaHernja;
+/*package ua.vsjakaHernja;
 
 //import java.util.List;
 
@@ -15,3 +15,4 @@ public class Main {
 		
 	}
 }
+*/
