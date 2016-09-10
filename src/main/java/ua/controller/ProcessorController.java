@@ -21,7 +21,6 @@ import ua.service.TypeProcessorService;
 import ua.service.ÑoreProcessorService;
 import ua.service.implementation.editor.TypeProcessorEditor;
 import ua.service.implementation.editor.ÑoreProcessorEditor;
-import ua.service.implementation.validator.ÑoreProcessorFormValidator;
 
 @Controller
 public class ProcessorController {

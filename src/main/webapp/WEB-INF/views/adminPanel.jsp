@@ -14,5 +14,6 @@
 <p><a href="/admin/videoadapter">Video Adapter</a>
 <p><a href="/admin/processor">Processors</a>
 <p><a href="/admin/hdd">Hdd</a>
+<p><a href="/admin/komputer">Komputer</a>
 </body>
 </html>

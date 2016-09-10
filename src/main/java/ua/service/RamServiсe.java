@@ -17,4 +17,7 @@ public interface RamServiñe {
 	void save(RamForm form);
 
 	RamForm findForForm(int id);
+
+	Ram findOne(Integer valueOf);
+
 }

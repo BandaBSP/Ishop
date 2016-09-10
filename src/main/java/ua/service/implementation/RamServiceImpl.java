@@ -50,4 +50,9 @@ public class RamServiceImpl implements RamServiñe {
 		return forma;
 	}
 
+	@Override
+	public Ram findOne(Integer valueOf) {
+		return RamRepository.findOne(valueOf);
+	}
+
 }

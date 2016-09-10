@@ -37,8 +37,6 @@ public class ProcessorImpl implements ProcessorService {
 		processor.setCoreprocessor(form.getCoreprocessor());
 		processor.setTypeprocessor(form.getTypeprocessor());
 		processor.setId(form.getId());
-		System.out.print(form.getCoreprocessor() + " "
-				+ form.getTypeprocessor() + " " + form.getId());
 		processorRepository.save(processor);
 
 	}

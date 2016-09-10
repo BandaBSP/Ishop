@@ -40,6 +40,21 @@ public class Komputer {
 	public Komputer() {
 		super();
 	}
+	
+	
+
+	public Komputer(int id, Hdd hdd, Ram ram, VideoAdapter videoadapter,
+			Processor processor, int price) {
+		super();
+		this.id = id;
+		this.hdd = hdd;
+		this.ram = ram;
+		this.videoadapter = videoadapter;
+		this.processor = processor;
+		this.price = price;
+	}
+
+
 
 	public Komputer(int id, Hdd hdd, OpticalDrive opticaldrive, Ram ram,
 			VideoAdapter videoadapter, Processor processor,
@@ -54,6 +69,21 @@ public class Komputer {
 		this.komputers = komputers;
 		this.price = price;
 	}
+
+	
+
+
+
+	public Komputer(Hdd hdd, Ram ram, VideoAdapter videoadapter,
+			Processor processor) {
+		super();
+		this.hdd = hdd;
+		this.ram = ram;
+		this.videoadapter = videoadapter;
+		this.processor = processor;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -117,6 +147,12 @@ public class Komputer {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+
+
+	public void setPrice(String valueOf) {
+		
 	}
 
 }

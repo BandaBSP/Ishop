@@ -19,4 +19,6 @@ public interface VideoAdapterService {
 	void save(VideoAdapterForm form);
 
 	VideoAdapterForm findForForm(int id);
+
+	VideoAdapter findOne(Integer valueOf);
 }

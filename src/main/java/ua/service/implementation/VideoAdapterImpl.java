@@ -55,4 +55,9 @@ public class VideoAdapterImpl implements VideoAdapterService {
 		return form;
 	}
 
+	@Override
+	public VideoAdapter findOne(Integer valueOf) {
+		return videoadapterRepository.findOne(valueOf);
+	}
+
 }
