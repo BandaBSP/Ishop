@@ -20,16 +20,6 @@ public class HddController {
 	@Autowired
 	private HddService hddService;
 
-	// private TypeHdd typeHdd;
-
-	// @InitBinder("form")
-	// protected void initBinder(WebDataBinder binder){
-	// binder.registerCustomEditor(ÑoreProcessor.class, new
-	// ÑoreProcessorEditor(coreprocessorService));
-	// binder.registerCustomEditor(TypeProcessor.class, new
-	// TypeProcessorEditor(typeprocessorService));
-	// binder.setValidator(new ÑoreProcessorFormValidator(recipeService));
-	// }
 
 	@ModelAttribute("form")
 	public HddForm getForm() {

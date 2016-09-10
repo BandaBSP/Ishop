@@ -22,6 +22,7 @@ public class HddImpl implements HddService {
 	public void save(HddForm form) {
 		Hdd hdd = new Hdd();
 		hdd.setId(form.getId());
+		hdd.setTypeHdd(form.getTypeHdd());
 		hdd.setHddGb(Integer.parseInt(form.getHddGb()));
 		hddRepository.save(hdd);
 
@@ -46,6 +47,7 @@ public class HddImpl implements HddService {
 	public HddForm findForForm(int id) {
 		Hdd hdd = hddRepository.findOne(id);
 		HddForm form = new HddForm();
+		form.setTypeHdd(hdd.getTypeHdd());
 		form.setId(hdd.getId());
 		form.setHddGb(String.valueOf(hdd.getHddGb()));
 		return form;

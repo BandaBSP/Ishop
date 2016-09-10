@@ -21,6 +21,7 @@ import ua.service.TypeProcessorService;
 import ua.service.ÑoreProcessorService;
 import ua.service.implementation.editor.TypeProcessorEditor;
 import ua.service.implementation.editor.ÑoreProcessorEditor;
+import ua.service.implementation.validator.ÑoreProcessorFormValidator;
 
 @Controller
 public class ProcessorController {
@@ -37,11 +38,9 @@ public class ProcessorController {
 
 	@InitBinder("form")
 	protected void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(ÑoreProcessor.class,
-				new ÑoreProcessorEditor(coreprocessorService));
-		binder.registerCustomEditor(TypeProcessor.class,
-				new TypeProcessorEditor(typeprocessorService));
-		// binder.setValidator(new ÑoreProcessorFormValidator(recipeService));
+		binder.registerCustomEditor(ÑoreProcessor.class, new ÑoreProcessorEditor(coreprocessorService));
+		binder.registerCustomEditor(TypeProcessor.class, new TypeProcessorEditor(typeprocessorService));
+//		 binder.setValidator(new ÑoreProcessorFormValidator(coreprocessorService));
 	}
 
 	@ModelAttribute("form")

@@ -10,9 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form action="/admin/hdd" method="post"
-		modelAttribute="form">
-		<form:hidden path="id"/>
+	<form:form action="/admin/hdd" method="post" modelAttribute="form">
+		<form:hidden path="id" />
 		<table>
 			<a href="/admin">Go to Admin panel</a>
 			<tr>
@@ -31,6 +30,7 @@
 		<c:forEach items="${hdds}" var="hdd">
 			<tr>
 				<td>${hdd.hddGb}</td>
+				<td>${hdd.typeHdd}</td>
 				<td><a href="/admin/hdd/delete/${hdd.id}">delete</a></td>
 				<td><a href="/admin/hdd/update/${hdd.id}">update</a></td>
 			</tr>
