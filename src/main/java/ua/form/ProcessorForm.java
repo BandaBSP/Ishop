@@ -10,7 +10,7 @@ public class ProcessorForm {
 	private ÑoreProcessor coreprocessor;
 
 	private TypeProcessor typeprocessor;
-	
+
 	private String name;
 
 	public int getId() {
@@ -37,21 +37,16 @@ public class ProcessorForm {
 		this.typeprocessor = typeprocessor;
 	}
 
-	public String getName() {
-		return name;
+	public String getName(ÑoreProcessor coreprocessor,
+			TypeProcessor typeprocessor) {
+		return name =  typeprocessor.getName() + ", "
+				+ Integer.toString(coreprocessor.getCore());
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setName(ÑoreProcessor coreprocessor, TypeProcessor typeprocessor) {
+
+		this.name = typeprocessor.getName() + ", "
+				+ Integer.toString(coreprocessor.getCore());
 	}
 
-	public String getName(ÑoreProcessor coreprocessor2,
-			TypeProcessor typeprocessor2) {
-		return name = "coreprocessor2" + "typeprocessor2";
-	}
-	public void setName(ÑoreProcessor coreprocessor2,
-			TypeProcessor typeprocessor2) {
-		 name = "coreprocessor2" + "typeprocessor2";
-	}
-	
 }

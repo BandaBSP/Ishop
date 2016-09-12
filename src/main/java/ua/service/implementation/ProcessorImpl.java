@@ -30,12 +30,12 @@ public class ProcessorImpl implements ProcessorService {
 	@Autowired
 	private TypeProcessorRepository typeprocessorRepository;
 
-
 	@Override
 	public void save(ProcessorForm form) {
 		Processor processor = new Processor(new ÑoreProcessor(),
 				new TypeProcessor());
-		processor.setName(form.getName());
+		processor.setName(form.getName(form.getCoreprocessor(),
+				form.getTypeprocessor()));
 		processor.setCoreprocessor(form.getCoreprocessor());
 		processor.setTypeprocessor(form.getTypeprocessor());
 		processor.setId(form.getId());
@@ -56,7 +56,7 @@ public class ProcessorImpl implements ProcessorService {
 	@Override
 	public ProcessorForm findForForm(int id) {
 		ProcessorForm form = new ProcessorForm();
-		form.setName(form.getName(form.getCoreprocessor(),form.getTypeprocessor()));
+		form.setName(form.getCoreprocessor(), form.getTypeprocessor());
 		form.setId(form.getId());
 		form.setTypeprocessor(form.getTypeprocessor());
 		form.setCoreprocessor(form.getCoreprocessor());
