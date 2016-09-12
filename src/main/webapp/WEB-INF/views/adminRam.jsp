@@ -1,51 +1,58 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<meta charset="UTF-8">
 </head>
 <body>
-<form:form action="/admin/ram" method="post"
-		modelAttribute="form">
-		<form:hidden path="id"/>
+	<form:form action="/admin/ram" method="post" modelAttribute="ram">
+	<form:hidden path="id"/>
 		<table>
-			<a href="/admin">Go to Admin panel</a>
+		<a href="/admin">Go to Admin panel</a>
 			<tr>
-				<td><form:input path="ramGb" placeholder="ramGb" /></td>
+				<td><form:input path="ramGb" placeholder="ram Gb" /></td>
 			</tr>
-
 			<tr>
-				<td><input type="submit" value="Записати в базу"></td>
+				<td><input type="submit"></td>
 			</tr>
 		</table>
 	</form:form>
-	<table>
+	 <table>
 		<tr>
-			<th>Ram Gb</th>
+			<th>Ram</th>
 		</tr>
-		<c:forEach items="${rams}" var="ram">
+		<c:forEach items="${page.content}" var="ram">
 			<tr>
 				<td>${ram.ramGb}</td>
-				<td><a href="/admin/ram/delete/${ram.id}">delete</a></td>
-				<td><a href="/admin/ram/update/${ram.id}">update</a></td>
+				<td>
+					<a href="/admin/ram/delete/${ram.id}?page=${page.number+1}&size=${page.size}&sort=${param['sort']}">delete</a>
+				</td>
+				<td>
+					<a href="/admin/ram/update/${ram.id}">update</a>
+				</td>
 			</tr>
 		</c:forEach>
-	</table>
-
-<%-- 	<table>
-		<tr>
-			<td><select name="RamId">
-					<c:forEach items="${rams}" var="ram">
-						<option value="=${ram.id}">${ram.ramGb}
-					</c:forEach>
-					<select />
-					<td />
-					<tr />
-	</table> --%>
+			<tr>
+				<c:if test="${!page.isFirst()}">
+					<td><a href="?page=${page.number}&size=${page.size}&sort=${param['sort']}">Previous</a></td>
+				</c:if>
+				<c:if test="${!page.isLast()}">
+					<td><a href="?page=${page.number+2}&size=${page.size}&sort=${param['sort']}">Next</a></td>
+				</c:if>
+			</tr>
+			<tr>
+				<td><a href="?page=1&size=1&sort=${param['sort']}">1</a></td>
+				<td><a href="?page=1&size=5&sort=${param['sort']}">5</a></td>
+				<td><a href="?page=1&size=10&sort=${param['sort']}">10</a></td>
+				<td><a href="?page=1&size=20&sort=${param['sort']}">20</a></td>
+			</tr>
+			<tr>
+				<td><a href="?page=1&size=${page.size}&sort=ramGb">Name asc</a></td>
+				<td><a href="?page=1&size=${page.size}&sort=ramGb,desc">Name desc</a></td>
+			</tr>
+	</table> 
 </body>
 </html>

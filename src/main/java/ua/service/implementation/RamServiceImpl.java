@@ -3,6 +3,8 @@ package ua.service.implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,32 +29,42 @@ public class RamServiceImpl implements RamServiñe {
 	}
 
 	@Override
-	public void delete(int ramGb) {
-		RamRepository.delete(ramGb);
+	public void delete(int id) {
+		RamRepository.delete(id);
 	}
 
 	@Override
 	public List<Ram> findAll() {
 		return RamRepository.findAll();
 	}
-
-	@Override
-	public void deleteId(int id) {
-		RamRepository.delete(id);
-	}
+//
+//	@Override
+//	public void deleteId(int id) {
+//		RamRepository.delete(id);
+//	}
 
 	@Override
 	public RamForm findForForm(int id) {
 		Ram ram = RamRepository.findOne(id);
-		RamForm forma = new RamForm();
-		forma.setId(ram.getId());
-		forma.setRamGb(String.valueOf(ram.getRamGb()));
-		return forma;
+		RamForm form = new RamForm();
+		form.setId(ram.getId());
+		form.setRamGb(String.valueOf(ram.getRamGb()));
+		return form;
 	}
 
 	@Override
 	public Ram findOne(Integer valueOf) {
 		return RamRepository.findOne(valueOf);
+	}
+
+	@Override
+	public Page<Ram> findAll(Pageable pageable) {
+		return RamRepository.findAll(pageable);
+	}
+
+	@Override
+	public void save(Ram ram) {
+		RamRepository.save(ram);
 	}
 
 }

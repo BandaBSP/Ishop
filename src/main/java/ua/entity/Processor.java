@@ -26,6 +26,8 @@ public class Processor {
 
 	@OneToMany(mappedBy = "processor")
 	private List<Komputer> komputers = new ArrayList<Komputer>();
+	
+	private String name;
 
 	public Processor() {
 		super();
@@ -78,4 +80,12 @@ public class Processor {
 		this.komputers = komputers;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+ 
 }
