@@ -37,11 +37,6 @@ public class RamServiceImpl implements RamServiñe {
 	public List<Ram> findAll() {
 		return RamRepository.findAll();
 	}
-//
-//	@Override
-//	public void deleteId(int id) {
-//		RamRepository.delete(id);
-//	}
 
 	@Override
 	public RamForm findForForm(int id) {

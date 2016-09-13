@@ -40,13 +40,13 @@ public class ProcessorForm {
 	public String getName(ÑoreProcessor coreprocessor,
 			TypeProcessor typeprocessor) {
 		return name =  typeprocessor.getName() + ", "
-				+ Integer.toString(coreprocessor.getCore());
+				+ Integer.toString(coreprocessor.getCore())+ " core ";
 	}
 
 	public void setName(ÑoreProcessor coreprocessor, TypeProcessor typeprocessor) {
 
 		this.name = typeprocessor.getName() + ", "
-				+ Integer.toString(coreprocessor.getCore());
+				+ Integer.toString(coreprocessor.getCore()) + " core ";
 	}
 
 }

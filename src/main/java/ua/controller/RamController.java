@@ -46,6 +46,7 @@ public class RamController {
 			@RequestParam(value="sort", required=false, defaultValue="") String sort){
 		ramService.delete(id);
 		return "redirect:/admin/ram?page="+page+"&size="+size+"&sort="+sort;
+		
 	}
 	
 	
