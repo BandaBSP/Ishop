@@ -1,7 +1,6 @@
 package ua.entity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,7 +15,6 @@ import javax.persistence.Table;
 @Table(indexes = { @Index(columnList = "hddGb") })
 public class Hdd {
 	
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

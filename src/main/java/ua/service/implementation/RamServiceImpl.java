@@ -10,8 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ua.entity.Ram;
 import ua.form.RamForm;
+import ua.form.filter.RamFilterForm;
 import ua.repository.RamRepository;
 import ua.service.RamServiñe;
+import ua.service.implementation.specification.RamFilterAdapter;
 
 @Service
 @Transactional
@@ -43,7 +45,7 @@ public class RamServiceImpl implements RamServiñe {
 		Ram ram = RamRepository.findOne(id);
 		RamForm form = new RamForm();
 		form.setId(ram.getId());
-		form.setRamGb(String.valueOf(ram.getRamGb()));
+		form.setRamGb(Integer.toString(ram.getRamGb()));
 		return form;
 	}
 
@@ -61,5 +63,17 @@ public class RamServiceImpl implements RamServiñe {
 	public void save(Ram ram) {
 		RamRepository.save(ram);
 	}
+
+	@Override
+	public Page<Ram> findAll(Pageable pageable, RamFilterForm form) {
+		return RamRepository.findAll(new RamFilterAdapter(form), pageable);
+	}
+
+	@Override
+	public Ram findByName(String ramGb) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

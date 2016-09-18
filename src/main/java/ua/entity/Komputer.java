@@ -149,8 +149,6 @@ public class Komputer {
 		this.price = price;
 	}
 
-
-
 	public void setPrice(String valueOf) {
 		
 	}

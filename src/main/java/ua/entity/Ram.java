@@ -56,4 +56,13 @@ public class Ram {
 		this.komputers = komputers;
 	}
 
+	public Ram(int id, List<Komputer> komputers, int ramGb) {
+		super();
+		this.id = id;
+		this.komputers = komputers;
+		this.ramGb = ramGb;
+	}
+	
+	
+
 }

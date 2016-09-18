@@ -29,6 +29,9 @@ public class ProcessorImpl implements ProcessorService {
 
 	@Autowired
 	private TypeProcessorRepository typeprocessorRepository;
+	
+//	@Autowired
+//	private FileWriter fileWriter;
 
 	@Override
 	public void save(ProcessorForm form) {

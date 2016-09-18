@@ -8,6 +8,7 @@ public class IndexController {
 
 	@RequestMapping("/")
 	public String showIndex() {
+		System.out.println(System.getProperty("katalina.home"));
 		return "index";
 	}
 

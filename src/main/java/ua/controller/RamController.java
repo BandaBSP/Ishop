@@ -1,27 +1,28 @@
 package ua.controller;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ua.entity.Ram;
-import ua.form.RamForm;
+import ua.form.filter.RamFilterForm;
 import ua.service.RamServiñe;
+import ua.service.implementation.validator.RamValidator;
 
 @Controller
-@SessionAttributes("ram")
 public class RamController {
 	
 	@Autowired
@@ -31,6 +32,25 @@ public class RamController {
 	public Ram getForm(){
 		return new Ram();
 	}
+	
+	@ModelAttribute("filter")
+	public RamFilterForm getFilter(){
+		return new RamFilterForm();
+	}
+	
+	@InitBinder("ram")
+	protected void initBinder(WebDataBinder binder){
+	   binder.setValidator(new RamValidator(ramService));
+	}
+
+//	@RequestMapping("/admin/ram")
+//	public String showRam(Model model,
+//			@PageableDefault(5) Pageable pageable,
+//			@ModelAttribute(value="filter") RamFilterForm form){
+//				model.addAttribute("page", ramService.findAll(pageable, form));
+//		return "adminRam";
+//	}
+	
 
 	@RequestMapping("/admin/ram")
 	public String showRam(Model model, @PageableDefault(5) Pageable pageable){
@@ -38,35 +58,56 @@ public class RamController {
 		return "adminRam";
 	}
 	
-	
 	@RequestMapping("/admin/ram/delete/{id}")
-	public String delete(@PathVariable int id, 
-			@RequestParam(value="page", required=false, defaultValue="1") int page, 
-			@RequestParam(value="size", required=false, defaultValue="5") int size,
-			@RequestParam(value="sort", required=false, defaultValue="") String sort){
+	public String delete(@PathVariable int id,
+			@PageableDefault(5) Pageable pageable,
+			@ModelAttribute(value="filter") RamFilterForm form){
 		ramService.delete(id);
-		return "redirect:/admin/ram?page="+page+"&size="+size+"&sort="+sort;
-		
+		return "redirect:/admin/ram"+getParams(pageable, form);
 	}
 	
-	
-	@RequestMapping(value="/admin/ram", method=RequestMethod.POST)
-	public String save(@ModelAttribute("ram") @Valid RamForm form, BindingResult br, Model model, HttpSession session){
-		if(br.hasErrors()){
-			model.addAttribute("rams", ramService.findAll());
-			return "adminRam";
-		}
-		ramService.save(form);
-		session.getAttribute("ram");
-		return "redirect:/admin/ram";
-	}
-	
-	@RequestMapping(value = "/admin/ram/update/{id}")
-	public String update(@PathVariable int id, Model model, @PageableDefault(5) Pageable pageable, HttpSession session) {
-		model.addAttribute("page", ramService.findAll(pageable));
-		model.addAttribute("rams", ramService.findAll());
-		session.getAttribute("ram");
+	@RequestMapping("/admin/ram/update/{id}")
+	public String update(Model model,
+			@PathVariable int id,
+			@PageableDefault(5) Pageable pageable,
+			@ModelAttribute(value="filter") RamFilterForm form){
+		model.addAttribute("ram", ramService.findOne(id));
+//		model.addAttribute("page", ramService.findAll(pageable, form));
 		return "adminRam";
 	}
 	
+	@RequestMapping(value= "/admin/ram", method=RequestMethod.POST)
+	public String save(@ModelAttribute("ram") @Valid Ram ram,
+			BindingResult br,
+			@PageableDefault(5) Pageable pageable,
+			@ModelAttribute(value="filter") RamFilterForm form,
+			Model model){
+		if(br.hasErrors()){
+//			model.addAttribute("page", ramService.findAll(pageable, form));
+			return "adminRam";
+		}
+		ramService.save(ram);
+		return "redirect:/admin/ram"+getParams(pageable, form);
+	}
+	
+	
+	private String getParams(Pageable pageable, RamFilterForm form){
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("?page=");
+		buffer.append(String.valueOf(pageable.getPageNumber()+1));
+		buffer.append("&size=");
+		buffer.append(String.valueOf(pageable.getPageSize()));
+		if(pageable.getSort()!=null){
+			buffer.append("&sort=");
+			Sort sort = pageable.getSort();
+			sort.forEach((order)->{
+				buffer.append(order.getProperty());
+				if(order.getDirection()!=Direction.ASC)
+				buffer.append(",desc");
+			});
+		}
+		buffer.append("&search=");
+		buffer.append(form.getSearch());
+		return buffer.toString();
+	}
 }

@@ -1,20 +1,9 @@
 package ua.form;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 import ua.entity.Hdd;
-import ua.entity.OpticalDrive;
 import ua.entity.Processor;
 import ua.entity.Ram;
-import ua.entity.TypeProcessor;
-import ua.entity.User;
 import ua.entity.VideoAdapter;
-import ua.entity.ÑoreProcessor;
 
 public class KomputerForm {
 
@@ -80,10 +69,9 @@ public class KomputerForm {
 		this.price = price;
 	}
 
-	public void setPrice(int parseInt) {
-		// TODO Auto-generated method stub
-		
-	}
+//	public void setPrice(int parseInt) {
+//		this.price = Integer.parseInt(price);		
+//	}
 
 
 	

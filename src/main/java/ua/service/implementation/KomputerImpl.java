@@ -49,7 +49,8 @@ public class KomputerImpl implements KomputerService {
 		komputer.setProcessor(form.getProcessor());
 		komputer.setRam(form.getRam());
 		komputer.setVideoadapter(form.getVideoadapter());
-		komputer.setPrice(form.getPrice());
+		komputer.setPrice(Integer.parseInt(form.getPrice()));
+		System.out.println(komputer.getPrice());
 		komputer.setId(form.getId());
 		komputerRepository.save(komputer);
 	}
