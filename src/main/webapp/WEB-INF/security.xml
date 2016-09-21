@@ -11,6 +11,8 @@
 		<form-login login-page="/login" login-processing-url="/login" username-parameter="login" authentication-failure-url="/login?fail=true"/>
 		<logout logout-url="/logout" logout-success-url="/"/>
 		<csrf />
+		
+		<remember-me key="myAppKey" user-service-ref="userDetailsService"/>
 	</http>
 	
 <!-- 	<user-service> -->
