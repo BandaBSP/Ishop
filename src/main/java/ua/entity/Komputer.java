@@ -1,6 +1,5 @@
 package ua.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Komputer {
@@ -32,8 +30,8 @@ public class Komputer {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Processor processor;
 
-	@OneToMany(mappedBy = "komputer")
-	private List<User> komputers = new ArrayList<User>();
+//	@OneToMany(mappedBy = "komputer")
+//	private List<User> komputers = new ArrayList<User>();
 
 	private int price;
 
@@ -66,7 +64,7 @@ public class Komputer {
 		this.ram = ram;
 		this.videoadapter = videoadapter;
 		this.processor = processor;
-		this.komputers = komputers;
+//		this.komputers = komputers;
 		this.price = price;
 	}
 
@@ -132,14 +130,14 @@ public class Komputer {
 	public void setProcessor(Processor processor) {
 		this.processor = processor;
 	}
-
-	public List<User> getKomputers() {
-		return komputers;
-	}
-
-	public void setKomputers(List<User> komputers) {
-		this.komputers = komputers;
-	}
+//
+//	public List<User> getKomputers() {
+//		return komputers;
+//	}
+//
+//	public void setKomputers(List<User> komputers) {
+//		this.komputers = komputers;
+//	}
 
 	public int getPrice() {
 		return price;

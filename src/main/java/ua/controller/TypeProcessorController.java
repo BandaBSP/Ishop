@@ -21,7 +21,7 @@ import ua.entity.TypeProcessor;
 import ua.form.TypeProcessorForm;
 import ua.form.filter.TypeProcessorFilterForm;
 import ua.service.TypeProcessorService;
-import ua.service.implementation.validator.TypeProcessorValidator;
+import ua.service.implementation.editor.TypeProcessorEditor;
 
 @Controller
 public class TypeProcessorController {
@@ -39,9 +39,10 @@ public class TypeProcessorController {
 		return new TypeProcessorFilterForm();
 	}
 
-	@InitBinder("typeprocessor")
+	
+	@InitBinder("form")
 	protected void initBinder(WebDataBinder binder){
-	   binder.setValidator(new TypeProcessorValidator(typeprocessorService));
+	   binder.registerCustomEditor(TypeProcessor.class, new TypeProcessorEditor(typeprocessorService));
 	}
 	
 	@RequestMapping("/admin/typeprocessor")

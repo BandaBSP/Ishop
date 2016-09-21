@@ -18,4 +18,19 @@
         <put-attribute name="title" value="{1}" />
         <put-attribute name="body" value="/WEB-INF/views/admin{1}.jsp" />
     </definition>
+    
+   <definition name="login" extends="common">
+		<put-attribute name="title" value="admin" />
+		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+	</definition>
+	
+	<definition name="registration" extends="common">
+		<put-attribute name="title" value="admin" />
+		<put-attribute name="body" value="/WEB-INF/views/registration.jsp" />
+	</definition>
+	
+	<definition name="sait" extends="common">
+		<put-attribute name="title" value="admin" />
+		<put-attribute name="body" value="/WEB-INF/views/sait.jsp" />
+	</definition>
 </tiles-definitions>

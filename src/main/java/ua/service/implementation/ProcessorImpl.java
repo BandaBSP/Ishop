@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,10 +14,12 @@ import ua.entity.Processor;
 import ua.entity.TypeProcessor;
 import ua.entity.ÑoreProcessor;
 import ua.form.ProcessorForm;
+import ua.form.filter.ProcessorFilterForm;
 import ua.repository.ProcessorRepository;
 import ua.repository.TypeProcessorRepository;
 import ua.repository.ÑoreProcessorRepository;
 import ua.service.ProcessorService;
+import ua.service.implementation.specification.ProcessorFilterAdapter;
 
 @Service
 @Transactional
@@ -29,46 +33,46 @@ public class ProcessorImpl implements ProcessorService {
 
 	@Autowired
 	private TypeProcessorRepository typeprocessorRepository;
+
 	
-//	@Autowired
-//	private FileWriter fileWriter;
-
-	@Override
-	public void save(ProcessorForm form) {
-		Processor processor = new Processor(new ÑoreProcessor(),
-				new TypeProcessor());
-		processor.setName(form.getName(form.getCoreprocessor(),
-				form.getTypeprocessor()));
-		processor.setCoreprocessor(form.getCoreprocessor());
-		processor.setTypeprocessor(form.getTypeprocessor());
-		processor.setId(form.getId());
-		processorRepository.save(processor);
-
-	}
-
 	@Override
 	public List<Processor> findAll() {
 		return processorRepository.findAll();
 	}
-
 	@Override
 	public void delete(int id) {
 		processorRepository.delete(id);
 	}
 
 	@Override
-	public ProcessorForm findForForm(int id) {
+	public void save(ProcessorForm form) {
+		ÑoreProcessor coreprocessor = form.getCoreprocessor();
+		TypeProcessor typeprocessor = form.getTypeprocessor();
+		Processor processor = new Processor();
+		processor.setCoreprocessor(coreprocessor);
+		processor.setTypeprocessor(typeprocessor);
+		processorRepository.save(processor);
+	}
+	@Override
+	public Page<Processor> findAll(Pageable pageable) {
+		return processorRepository.findAll(pageable);
+	}
+	@Override
+	public Page<Processor> findAll(Pageable pageable, ProcessorFilterForm form) {
+		return processorRepository.findAll(new ProcessorFilterAdapter(form), pageable);
+	}
+	@Override
+	public ProcessorForm findOneForForm(int id) {
+		Processor ai = processorRepository.findForForm(id);
 		ProcessorForm form = new ProcessorForm();
-		form.setName(form.getCoreprocessor(), form.getTypeprocessor());
-		form.setId(form.getId());
-		form.setTypeprocessor(form.getTypeprocessor());
-		form.setCoreprocessor(form.getCoreprocessor());
+		form.setId(id);
+		form.setCoreprocessor(ai.getCoreprocessor());
+		form.setTypeprocessor(ai.getTypeprocessor());
 		return form;
 	}
-
 	@Override
 	public Processor findOne(Integer valueOf) {
-		return processorRepository.findOne(valueOf);
+		// TODO Auto-generated method stub
+		return null;
 	}
-
 }

@@ -1,11 +1,12 @@
 package ua.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ua.entity.TypeProcessor;
 import ua.entity.ÑoreProcessor;
 import ua.form.ProcessorForm;
+import ua.form.filter.ProcessorFilterForm;
 import ua.service.ProcessorService;
 import ua.service.TypeProcessorService;
 import ua.service.ÑoreProcessorService;
@@ -30,7 +32,6 @@ public class ProcessorController {
 
 	@Autowired
 	private TypeProcessorService typeprocessorService;
-
 
 	@Autowired
 	private ÑoreProcessorService coreprocessorService;
@@ -47,39 +48,84 @@ public class ProcessorController {
 		return new ProcessorForm();
 	}
 
+	@ModelAttribute("filter")
+	public ProcessorFilterForm getFilter(){
+		return new ProcessorFilterForm();
+	}
+	
+	
+//	@RequestMapping("/admin/processor")
+//	public String showProcessor(Model model) {
+//		model.addAttribute("processors", processorService.findAll());
+//		model.addAttribute("typeprocessors", typeprocessorService.findAll());
+//		model.addAttribute("coreprocessors", coreprocessorService.findAll());
+//		return "adminProcessor";
+//	}
+	
 	@RequestMapping("/admin/processor")
-	public String showProcessor(Model model) {
-		model.addAttribute("processors", processorService.findAll());
-		model.addAttribute("typeprocessors", typeprocessorService.findAll());
-		model.addAttribute("coreprocessors", coreprocessorService.findAll());
+	public String show(Model model,
+			@PageableDefault(5) Pageable pageable,
+			@ModelAttribute(value="filter") ProcessorFilterForm filter){
+		long start = System.currentTimeMillis();
+		model.addAttribute("coreprocessors", coreprocessorService.findAll())
+		.addAttribute("processors", processorService.findAll())
+		.addAttribute("typeprocessors", typeprocessorService.findAll())
+		.addAttribute("page", processorService.findAll(pageable, filter));
+		System.out.println(System.currentTimeMillis());
 		return "adminProcessor";
 	}
-
-	@RequestMapping(value = "/admin/processor", method = RequestMethod.POST)
-	public String save(@ModelAttribute("form") @Valid ProcessorForm form,BindingResult br, Model model) {
-		if (br.hasErrors()) {
-			model.addAttribute("processors", processorService.findAll());
-			model.addAttribute("typeprocessors", typeprocessorService.findAll());
-			model.addAttribute("coreprocessors", coreprocessorService.findAll());
-			return "adminProcessor";
-		}
+	
+	@RequestMapping(value = "/admin/processor", method=RequestMethod.POST)
+	public String save(@ModelAttribute("form") ProcessorForm form,
+			@PageableDefault(5) Pageable pageable,
+			@ModelAttribute(value="filter") ProcessorFilterForm filter){
 		processorService.save(form);
-		return "redirect:/admin/processor";
+		return "redirect:/admin/processor"+getParams(pageable, filter);
 	}
 
-	@RequestMapping(value = "/admin/processor/update/{id}")
-	public String update(Model model, @PathVariable int id) {
-		model.addAttribute("form", processorService.findForForm(id));
-		model.addAttribute("processors", processorService.findAll());
-		model.addAttribute("typeprocessors", typeprocessorService.findAll());
-		model.addAttribute("coreprocessors", coreprocessorService.findAll());
-		return "adminProcessor";
-	}
-
-	@RequestMapping(value = "/admin/processor/delete/{id}")
-	public String delete(@PathVariable int id) {
+//	@RequestMapping(value = "/admin/processor/update/{id}")
+//	public String update(Model model, @PathVariable int id) {
+//		model.addAttribute("form", processorService.findForForm(id));
+//		model.addAttribute("processors", processorService.findAll());
+//		model.addAttribute("typeprocessors", typeprocessorService.findAll());
+//		model.addAttribute("coreprocessors", coreprocessorService.findAll());
+//		return "adminProcessor";
+//	}
+	
+	@RequestMapping("/admin/processor/delete/{id}")
+	public String delete(@PathVariable int id,
+			@PageableDefault(5) Pageable pageable,
+			@ModelAttribute(value="filter") ProcessorFilterForm filter){
 		processorService.delete(id);
-		return "redirect:/admin/processor";
+		return "redirect:/admin/processor"+getParams(pageable, filter);
 	}
-
+	private String getParams(Pageable pageable, ProcessorFilterForm form){
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("?page=");
+		buffer.append(String.valueOf(pageable.getPageNumber()+1));
+		buffer.append("&size=");
+		buffer.append(String.valueOf(pageable.getPageSize()));
+		if(pageable.getSort()!=null){
+			buffer.append("&sort=");
+			Sort sort = pageable.getSort();
+			sort.forEach((order)->{
+				buffer.append(order.getProperty());
+				if(order.getDirection()!=Direction.ASC)
+				buffer.append(",desc");
+			});
+		}
+		buffer.append("&min=");
+		buffer.append(form.getMin());
+		buffer.append("&max=");
+		buffer.append(form.getMax());
+		for(Integer i : form.getIngredientIds()){
+			buffer.append("&ingredientIds=");
+			buffer.append(i.toString());
+		}
+		for(Integer i : form.getMsIds()){
+			buffer.append("&msIds=");
+			buffer.append(i.toString());
+		}
+		return buffer.toString();
+	}
 }
