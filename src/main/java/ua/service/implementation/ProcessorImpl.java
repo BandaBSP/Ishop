@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.entity.Processor;
-import ua.entity.TypeProcessor;
-import ua.entity.ÑoreProcessor;
 import ua.form.ProcessorForm;
 import ua.form.filter.ProcessorFilterForm;
 import ua.repository.ProcessorRepository;
 import ua.repository.TypeProcessorRepository;
 import ua.repository.ÑoreProcessorRepository;
+import ua.service.FileWriter;
+import ua.service.FileWriter.Folder;
 import ua.service.ProcessorService;
 import ua.service.implementation.specification.ProcessorFilterAdapter;
 
@@ -34,6 +34,8 @@ public class ProcessorImpl implements ProcessorService {
 	@Autowired
 	private TypeProcessorRepository typeprocessorRepository;
 
+	@Autowired
+	private FileWriter fileWriter;
 	
 	@Override
 	public List<Processor> findAll() {
@@ -44,15 +46,28 @@ public class ProcessorImpl implements ProcessorService {
 		processorRepository.delete(id);
 	}
 
+		
 	@Override
 	public void save(ProcessorForm form) {
-		ÑoreProcessor coreprocessor = form.getCoreprocessor();
-		TypeProcessor typeprocessor = form.getTypeprocessor();
 		Processor processor = new Processor();
-		processor.setCoreprocessor(coreprocessor);
-		processor.setTypeprocessor(typeprocessor);
-		processorRepository.save(processor);
+		processor.setCoreprocessor(form.getCoreprocessor());
+		processor.setName(form.getName());
+		processor.setTypeprocessor(form.getTypeprocessor());
+		processor.setId(form.getId());
+		processor.setPath(form.getPath());
+		processor.setVersion(form.getVersion());
+		processorRepository.saveAndFlush(processor);
+		String extension = fileWriter.write(Folder.PROCESSOR, form.getFile(), processor.getId());
+		if(extension!=null){
+			processor.setVersion(form.getVersion()+1);
+			processor.setPath(extension);
+			processorRepository.save(processor);
+		}
 	}
+	
+	
+	
+	
 	@Override
 	public Page<Processor> findAll(Pageable pageable) {
 		return processorRepository.findAll(pageable);

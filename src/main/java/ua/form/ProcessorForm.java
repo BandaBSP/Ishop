@@ -1,5 +1,7 @@
 package ua.form;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import ua.entity.TypeProcessor;
 import ua.entity.ÑoreProcessor;
 
@@ -12,6 +14,45 @@ public class ProcessorForm {
 	private TypeProcessor typeprocessor;
 
 	private String name;
+
+	private String path;
+
+	private int version;
+
+	private MultipartFile file;
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	public int getId() {
 		return id;
@@ -39,8 +80,8 @@ public class ProcessorForm {
 
 	public String getName(ÑoreProcessor coreprocessor,
 			TypeProcessor typeprocessor) {
-		return name =  typeprocessor.getName() + ", "
-				+ Integer.toString(coreprocessor.getCore())+ " core ";
+		return name = typeprocessor.getName() + ", "
+				+ Integer.toString(coreprocessor.getCore()) + " core ";
 	}
 
 	public void setName(ÑoreProcessor coreprocessor, TypeProcessor typeprocessor) {

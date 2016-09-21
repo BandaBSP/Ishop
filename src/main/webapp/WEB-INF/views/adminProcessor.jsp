@@ -37,13 +37,13 @@ $(function() {
 					<form:input path="max" placeholder="max" class="form-control"/>
 				</div>
 				<div class="form-group">
-					<h4>Measuring system</h4>
+					<h4>type processor</h4>
 				</div>
 				<div class="form-group">
 					<form:checkboxes items="${typeprocessors}" path="msIds" itemLabel="name" itemValue="id" />
 				</div>
 				 <div class="form-group">
-					<h4>Ingredients</h4>
+					<h4>core processor</h4>
 				</div>
 				<div class="form-group">
 					<form:checkboxes items="${coreprocessors}" path="ingredientIds" itemLabel="core" itemValue="id"/>
@@ -55,21 +55,26 @@ $(function() {
 			</form:form>
 		</div>
 			<div class="col-md-7 col-xs-12">
-	<form:form class="form-inline" action="/admin/processor" method="post" modelAttribute="form">
-		<form:hidden path="id" />
-		<custom:hiddenInputs excludeParams=" typeprocessor, coreprocessor, id"/>
-					<div class="form-group">
-						<%-- <label for="amount"><form:errors path="amount" /></label>
-						<form:input path="amount" class="form-control" /> --%>
-						<form:select path="typeprocessor" items="${typeprocessors}" itemLabel="name" itemValue="id">
-						</form:select>
-						<form:select path="coreprocessor" items="${coreprocessors}" itemLabel="core" itemValue="id">
-						</form:select>
-						<input type="file" name="file">
-						<button type="submit" class="btn btn-primary">Create</button>
-					</div>
-	</form:form>
-	 <div class="row">
+		<form:form class="form-inline" action="/admin/processor" method="post"
+			modelAttribute="form" enctype="multipart/form-data">
+			<form:errors path="*" />
+			<form:hidden path="id" />
+			<form:hidden path="path" />
+			<form:hidden path="version" />
+			<custom:hiddenInputs
+				excludeParams="path, version, typeprocessor, coreprocessor, id " />
+			<div class="form-group">
+				<form:select path="typeprocessor" items="${typeprocessors}"	itemLabel="name" itemValue="id">
+				</form:select>
+				<form:select path="coreprocessor" items="${coreprocessors}"	itemLabel="core" itemValue="id">
+				</form:select>
+				<label class="btn btn-default btn-file"> Browse 
+				<input type="file" name="file" style="display: none;">
+				</label>
+				<button type="submit" class="btn btn-primary">Create</button>
+			</div>
+		</form:form>
+		<div class="row">
 		<div class="col-md-2">Amount</div>
 		<div class="col-md-2">Measuring system</div>
 		<div class="col-md-4">Ingredient</div>
@@ -78,7 +83,8 @@ $(function() {
 	</div>
 		<c:forEach items="${page.content}" var="processor">
 			<div class="row">
-				<div class="col-md-4">${processor.name}</div>
+			<div class="col-md-3"><img class="img-thumbnail" width="100" src="/images/processor/${processor.id}${processor.path}?version=${processor.version}" /></div>
+				<div class="col-md-4">${processor.typeprocessor.name} ${processor.coreprocessor.core}  core </div>
 				<div class="col-md-2">
 					<a href="/admin/processor/delete/${processor.id}<custom:allParams/>">delete</a>
 				</div>

@@ -1,5 +1,7 @@
 package ua.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -7,6 +9,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -66,23 +69,44 @@ public class ProcessorController {
 	public String show(Model model,
 			@PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value="filter") ProcessorFilterForm filter){
-		long start = System.currentTimeMillis();
+//		long start = System.currentTimeMillis();
 		model.addAttribute("coreprocessors", coreprocessorService.findAll())
 		.addAttribute("processors", processorService.findAll())
 		.addAttribute("typeprocessors", typeprocessorService.findAll())
 		.addAttribute("page", processorService.findAll(pageable, filter));
-		System.out.println(System.currentTimeMillis());
+//		System.out.println(System.currentTimeMillis());
 		return "adminProcessor";
 	}
 	
-	@RequestMapping(value = "/admin/processor", method=RequestMethod.POST)
-	public String save(@ModelAttribute("form") ProcessorForm form,
+//	@RequestMapping(value = "/admin/processor", method=RequestMethod.POST)
+//	public String save(@ModelAttribute("form") ProcessorForm form,
+//			@PageableDefault(5) Pageable pageable,
+//			@ModelAttribute(value="filter") ProcessorFilterForm filter){
+//		processorService.save(form);
+//		return "redirect:/admin/processor"+getParams(pageable, filter);
+//	}
+
+	@RequestMapping(value="/admin/processor", method=RequestMethod.POST)
+	public String save(@ModelAttribute("form") @Valid ProcessorForm form,
+			BindingResult br, Model model,
 			@PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value="filter") ProcessorFilterForm filter){
+		if(br.hasErrors()){
+			model.addAttribute("coreprocessors", coreprocessorService.findAll())
+			.addAttribute("processors", processorService.findAll())
+			.addAttribute("typeprocessors", typeprocessorService.findAll())
+			.addAttribute("page", processorService.findAll(pageable, filter));
+			return "adminProcessor";
+		}
 		processorService.save(form);
 		return "redirect:/admin/processor"+getParams(pageable, filter);
 	}
-
+	
+	
+	
+	
+	
+	
 //	@RequestMapping(value = "/admin/processor/update/{id}")
 //	public String update(Model model, @PathVariable int id) {
 //		model.addAttribute("form", processorService.findForForm(id));
