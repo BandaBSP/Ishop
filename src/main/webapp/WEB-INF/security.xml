@@ -12,7 +12,7 @@
 		<logout logout-url="/logout" logout-success-url="/"/>
 		<csrf />
 		
-		<remember-me key="myAppKey" user-service-ref="userDetailsService"/>
+	<!-- 	<remember-me key="myAppKey" user-service-ref="userDetailsService"/> -->
 	</http>
 	
 <!-- 	<user-service> -->

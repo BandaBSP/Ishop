@@ -9,11 +9,11 @@
 			<p style="color: red;">Fail</p>
 		</div>
 	</c:if>
-	<c:if test="${param.expired}">
+<%-- 	<c:if test="${param.expired}">
 		<div class="col-md-12 col-xs-12">
 			<p style="color: red;">Session expired</p>
 		</div>
-	</c:if>
+	</c:if> --%>
 		<form:form action="/login" class="form-inline" method="post">
 				<div class="form-group">
 					<input name="login" placeholder="Login" class="form-control" />
