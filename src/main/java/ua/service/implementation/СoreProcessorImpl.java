@@ -3,13 +3,16 @@ package ua.service.implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.entity.ÑoreProcessor;
-import ua.form.ÑoreProcessorForm;
+import ua.form.filter.ÑoreProcessorFilterForm;
 import ua.repository.ÑoreProcessorRepository;
 import ua.service.ÑoreProcessorService;
+import ua.service.implementation.specification.ÑoreProcessorFilterAdapter;
 
 @Service
 @Transactional
@@ -19,11 +22,23 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 	private ÑoreProcessorRepository coreprocessorRepository;
 
 	@Override
-	public void save(ÑoreProcessorForm form) {
-		ÑoreProcessor coreprocessor = new ÑoreProcessor();
-		coreprocessor.setId(form.getId());
-		coreprocessor.setCore(Integer.parseInt(form.getCore()));
+	public void save(ÑoreProcessor coreprocessor) {
 		coreprocessorRepository.save(coreprocessor);
+	}
+
+	@Override
+	public ÑoreProcessor findByName(String core) {
+			return coreprocessorRepository.findOne(Integer.valueOf(core));
+	}
+//
+//	@Override
+//	public void delete(String core) {
+//		coreprocessorRepository.delete(core);
+//	}
+
+	@Override
+	public List<ÑoreProcessor> findAll() {
+		return coreprocessorRepository.findAll();
 	}
 
 	@Override
@@ -32,32 +47,27 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 	}
 
 	@Override
-	public List<ÑoreProcessor> findAll() {
-		return coreprocessorRepository.findAll();
-	}
-
-	@Override
-	public ÑoreProcessor findOne(Integer valueOf) {
-		return coreprocessorRepository.findOne(valueOf);
-	}
-
-	@Override
-	public ÑoreProcessorForm findForForm(int id) {
-		ÑoreProcessor core = coreprocessorRepository.findOne(id);
-		ÑoreProcessorForm forma = new ÑoreProcessorForm();
-		forma.setId(core.getId());
-		forma.setCore(String.valueOf(core.getCore()));
-		return forma;
-	}
-
 	public ÑoreProcessor findOne(int id) {
 		return coreprocessorRepository.findOne(id);
 	}
 
 	@Override
-	public ÑoreProcessorForm findForForm(ÑoreProcessorForm form) {
+	public Page<ÑoreProcessor> findAll(Pageable pageable) {
+		return coreprocessorRepository.findAll(pageable);
+	}
+
+
+	@Override
+	public Page<ÑoreProcessor> findAll(Pageable pageable, ÑoreProcessorFilterForm form) {
+		return coreprocessorRepository.findAll(new ÑoreProcessorFilterForm form, pageable);
+	}
+
+
+
+	@Override
+	public void delete(String core) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }

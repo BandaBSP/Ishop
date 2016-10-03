@@ -85,12 +85,7 @@ $(function() {
 			<div class="row">
 			<div class="col-md-3"><img class="img-thumbnail" width="100" src="/images/processor/${processor.id}${processor.path}?version=${processor.version}" /></div>
 				<div class="col-md-4">${processor.typeprocessor.name} ${processor.coreprocessor.core}  core </div>
-				<div class="col-md-2">
-					<a href="/admin/processor/delete/${processor.id}<custom:allParams/>">delete</a>
-				</div>
-				<div class="col-md-2">
-					<a href="/admin/processor/update/${processor.id}<custom:allParams/>">update</a>
-				</div>
+				
 			</div>
 		</c:forEach>
 		<div class="col-md-12 text-center">

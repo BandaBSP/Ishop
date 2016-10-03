@@ -18,39 +18,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import ua.entity.TypeProcessor;
-import ua.form.TypeProcessorForm;
 import ua.form.filter.TypeProcessorFilterForm;
 import ua.service.TypeProcessorService;
-import ua.service.implementation.editor.TypeProcessorEditor;
+import ua.service.implementation.validator.TypeProcessorValidator;
 
 @Controller
 public class TypeProcessorController {
-
+	
 	@Autowired
 	private TypeProcessorService typeprocessorService;
-
-	@ModelAttribute("form")
-	public TypeProcessorForm getForm() {
-		return new TypeProcessorForm();
+	
+	@ModelAttribute("typeprocessor")
+	public TypeProcessor getForm(){
+		return new TypeProcessor();
 	}
-
+	
 	@ModelAttribute("filter")
-	public TypeProcessorFilterForm getFilter() {
+	public TypeProcessorFilterForm getFilter(){
 		return new TypeProcessorFilterForm();
 	}
-
 	
-	@InitBinder("form")
+	@InitBinder("typeprocessor")
 	protected void initBinder(WebDataBinder binder){
-	   binder.registerCustomEditor(TypeProcessor.class, new TypeProcessorEditor(typeprocessorService));
+	   binder.setValidator(new TypeProcessorValidator(typeprocessorService));
 	}
-	
+
 	@RequestMapping("/admin/typeprocessor")
 	public String show(Model model,
 			@PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value="filter") TypeProcessorFilterForm form){
 		model.addAttribute("page", typeprocessorService.findAll(pageable, form));
-		return "admintypeprocessor";
+		return "adminTypeProcessor";
 	}
 	
 	@RequestMapping("/admin/typeprocessor/delete/{id}")
@@ -60,15 +58,15 @@ public class TypeProcessorController {
 		typeprocessorService.delete(id);
 		return "redirect:/admin/typeprocessor"+getParams(pageable, form);
 	}
-
+	
 	@RequestMapping("/admin/typeprocessor/update/{id}")
 	public String update(Model model,
 			@PathVariable int id,
 			@PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value="filter") TypeProcessorFilterForm form){
-		model.addAttribute("typeprocessors", typeprocessorService.findOne(id));
+		model.addAttribute("typeprocessor", typeprocessorService.findOne(id));
 		model.addAttribute("page", typeprocessorService.findAll(pageable, form));
-		return "admintypeprocessor";
+		return "adminTypeProcessor";
 	}
 	
 	@RequestMapping(value= "/admin/typeprocessor", method=RequestMethod.POST)
@@ -79,11 +77,13 @@ public class TypeProcessorController {
 			Model model){
 		if(br.hasErrors()){
 			model.addAttribute("page", typeprocessorService.findAll(pageable, form));
-			return "admintypeprocessor";
+			return "adminTypeProcessor";
 		}
 		typeprocessorService.save(typeprocessor);
 		return "redirect:/admin/typeprocessor"+getParams(pageable, form);
 	}
+	
+	
 	
 	private String getParams(Pageable pageable, TypeProcessorFilterForm form){
 		StringBuilder buffer = new StringBuilder();
@@ -104,5 +104,4 @@ public class TypeProcessorController {
 		buffer.append(form.getSearch());
 		return buffer.toString();
 	}
-
 }

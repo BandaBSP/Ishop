@@ -3,13 +3,16 @@ package ua.service.implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.entity.VideoAdapter;
-import ua.form.VideoAdapterForm;
+import ua.form.filter.VideoAdapterFilterForm;
 import ua.repository.VideoAdapterRepository;
 import ua.service.VideoAdapterService;
+import ua.service.implementation.specification.VideoAdapterFilterAdapter;
 
 @Service
 @Transactional
@@ -19,10 +22,7 @@ public class VideoAdapterImpl implements VideoAdapterService {
 	private VideoAdapterRepository videoadapterRepository;
 
 	@Override
-	public void save(VideoAdapterForm form) {
-		VideoAdapter videoadapter = new VideoAdapter();
-		videoadapter.setId(form.getId());
-		videoadapter.setName(form.getName());
+	public void save(VideoAdapter videoadapter) {
 		videoadapterRepository.save(videoadapter);
 	}
 
@@ -47,17 +47,18 @@ public class VideoAdapterImpl implements VideoAdapterService {
 	}
 
 	@Override
-	public VideoAdapterForm findForForm(int id) {
-		VideoAdapter name = videoadapterRepository.findOne(id);
-		VideoAdapterForm form = new VideoAdapterForm();
-		form.setId(name.getId());
-		form.setName(name.getName());
-		return form;
+	public VideoAdapter findOne(int id) {
+		return videoadapterRepository.findOne(id);
 	}
 
 	@Override
-	public VideoAdapter findOne(Integer valueOf) {
-		return videoadapterRepository.findOne(valueOf);
+	public Page<VideoAdapter> findAll(Pageable pageable) {
+		return videoadapterRepository.findAll(pageable);
 	}
 
+
+	@Override
+	public Page<VideoAdapter> findAll(Pageable pageable, VideoAdapterFilterForm form) {
+		return videoadapterRepository.findAll(new VideoAdapterFilterAdapter(form), pageable);
+	}
 }

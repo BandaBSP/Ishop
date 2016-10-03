@@ -2,23 +2,28 @@ package ua.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import ua.entity.ÑoreProcessor;
-import ua.form.ÑoreProcessorForm;
+import ua.form.filter.ÑoreProcessorFilterForm;
 
 public interface ÑoreProcessorService {
 
+	void save(ÑoreProcessor coreprocessor);
 
-	void delete(int core);
+	ÑoreProcessor findByName(String core);
+
+	void delete(String core);
 
 	List<ÑoreProcessor> findAll();
 
-	ÑoreProcessor findOne(Integer valueOf);
-
-	ÑoreProcessorForm findForForm(ÑoreProcessorForm form);
+	void delete(int id);
 
 	ÑoreProcessor findOne(int id);
 
-	void save(ÑoreProcessorForm form);
+	Page<ÑoreProcessor> findAll(Pageable pageable);
 
-	ÑoreProcessorForm findForForm(int id);
+	Page<ÑoreProcessor> findAll(Pageable pageable, ÑoreProcessorFilterForm form);
+
 }
