@@ -13,7 +13,7 @@ import ua.form.filter.ÑoreProcessorFilterForm;
 
 public class ÑoreProcessorFilterAdapter implements Specification<ÑoreProcessor>{
 
-	private int search;
+	private String search = "";
 
 	public ÑoreProcessorFilterAdapter(ÑoreProcessorFilterForm form) {
 		search = form.getSearch();
@@ -27,8 +27,9 @@ public class ÑoreProcessorFilterAdapter implements Specification<ÑoreProcessor>{
 //			root.fetch("measuringSystem");
 //			query.distinct(true);
 		}
+		if(search.isEmpty())return null;
 		Expression<String> exp = root.get("core");
-		return cb.like(cb.upper(exp), search+"%");
+		return cb.equal(exp, search);
 	}
 	
 	

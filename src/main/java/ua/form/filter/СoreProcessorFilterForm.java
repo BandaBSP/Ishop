@@ -2,13 +2,13 @@ package ua.form.filter;
 
 public class ÑoreProcessorFilterForm {
 
-	private int search ;
+	private String search = "";
 
-	public int getSearch() {
+	public String getSearch() {
 		return search;
 	}
 
-	public void setSearch(int search) {
+	public void setSearch(String search) {
 		this.search = search;
 	}
 }

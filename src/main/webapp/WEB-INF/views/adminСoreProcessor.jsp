@@ -44,8 +44,7 @@
 					<form:input id="core" path="core" placeholder="coreprocessor core"
 						class="form-control" />
 					<label for="core"><form:errors path="core" /></label>
-					<button type="submit" class="btn btn-primary">Create
-						coreprocessor</button>
+					<button type="submit" class="btn btn-primary">Create coreprocessor</button>
 				</div>
 			</form:form>
 		</div>
@@ -92,4 +91,4 @@
 				title="Page size" />
 		</div>
 	</div>
-</div>
+</div> 

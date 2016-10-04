@@ -2,20 +2,28 @@ package ua.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import ua.entity.Hdd;
-import ua.form.HddForm;
+import ua.form.filter.HddFilterForm;
 
 public interface HddService {
 
+	void save(Hdd hddGb);
+
+	Hdd findByName(String hddGb);
+
+	void delete(String hddGb);
+
 	List<Hdd> findAll();
-
-	HddForm findForForm(int id);
-
-	void save(HddForm form);
 
 	void delete(int id);
 
-	Hdd findOne(Integer valueOf);
+	Hdd findOne(int id);
 
+	Page<Hdd> findAll(Pageable pageable);
+
+	Page<Hdd> findAll(Pageable pageable, HddFilterForm form);
 
 }

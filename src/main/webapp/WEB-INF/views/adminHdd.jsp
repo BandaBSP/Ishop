@@ -23,7 +23,7 @@
 <div class="row-fluid">
 	<div class="col-md-3 col-xs-12">
 		<div class="col-md-12 col-xs-12">
-			<form:form action="/admin/ram" class="form-inline" method="get"
+			<form:form action="/admin/hdd" class="form-inline" method="get"
 				modelAttribute="filter">
 				<custom:hiddenInputs excludeParams="search" />
 				<div class="form-group">
@@ -36,19 +36,20 @@
 	</div>
 	<div class="col-md-7 col-xs-12">
 		<div class="col-md-12 col-xs-12">
-			<form:form action="/admin/ram" method="post" class="form-inline"
-				modelAttribute="ram">
+			<form:form action="/admin/hdd" method="post" class="form-inline"
+				modelAttribute="hdd">
 				<form:hidden path="id" />
-				<custom:hiddenInputs excludeParams="ramGb, id" />
+				<custom:hiddenInputs excludeParams="hddGb,typeHdd, id" />
 				<div class="form-group">
-					<form:input id="ramGb" path="ramGb" placeholder="ram name" class="form-control" />
-						<label for="ramGb"><form:errors path="ramGb" /></label>
-						<button type="submit" class="btn btn-primary">Create ram</button>
+					<form:input id="hddGb" path="hddGb" placeholder="hdd name" class="form-control" />
+					<form:select path="typeHdd" items="${hdds}"></form:select>
+						<label for="hddGb"><form:errors path="hddGb" /></label>
+						<button type="submit" class="btn btn-primary">Create hdd</button>
 				</div>
 			</form:form>
 		</div>
 		<div class="col-md-4 col-xs-4">
-			<h4>ram ramGb</h4>
+			<h4>hdd hddGb</h4>
 		</div>
 		<div class="col-md-4 col-xs-4">
 			<h4>Delete</h4>
@@ -56,14 +57,14 @@
 		<div class="col-md-4 col-xs-4">
 			<h4>Update</h4>
 		</div>
-		<c:forEach items="${page.content}" var="ram">
-			<div class="col-md-4 col-xs-4">${ram.ramGb}</div>
+		<c:forEach items="${page.content}" var="hdd">
+			<div class="col-md-4 col-xs-4">${hdd.hddGb}${hdd.typeHdd}</div>
 			<div class="col-md-4 col-xs-4">
-				<a href="/admin/ram/delete/${ram.id}<custom:allParams/>">delete</a>
+				<a href="/admin/hdd/delete/${hdd.id}<custom:allParams/>">delete</a>
 			</div>
 			
 			<div class="col-md-4 col-xs-4">
-				<a href="/admin/ram/update/${ram.id}<custom:allParams/>">update</a>
+				<a href="/admin/hdd/update/${hdd.id}<custom:allParams/>">update</a>
 			</div>
 			
 		</c:forEach>
@@ -80,8 +81,8 @@
 					Sort <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<custom:sort innerHtml="Name asc" paramValue="ramGb" />
-					<custom:sort innerHtml="Name desc" paramValue="ramGb,desc" />
+					<custom:sort innerHtml="Name asc" paramValue="hddGb" />
+					<custom:sort innerHtml="Name desc" paramValue="hddGb,desc" />
 				</ul>
 			</div>
 		</div>

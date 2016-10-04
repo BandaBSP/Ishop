@@ -8,19 +8,19 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import ua.entity.Ram;
-import ua.form.filter.RamFilterForm;
+import ua.entity.Hdd;
+import ua.form.filter.HddFilterForm;
 
-public class RamFilterAdapter implements Specification<Ram>{
+public class HddFilterAdapter implements Specification<Hdd>{
 
 	private String search = "";
 
-	public RamFilterAdapter(RamFilterForm form) {
+	public HddFilterAdapter(HddFilterForm form) {
 		search = form.getSearch();
 	}
 
 	@Override
-	public Predicate toPredicate(Root<Ram> root, CriteriaQuery<?> query,
+	public Predicate toPredicate(Root<Hdd> root, CriteriaQuery<?> query,
 			CriteriaBuilder cb) {
 		if (query.getResultType() != Long.class && query.getResultType() != long.class) {
 //			root.fetch("ingredient");
@@ -28,7 +28,7 @@ public class RamFilterAdapter implements Specification<Ram>{
 //			query.distinct(true);
 		}
 		if(search.isEmpty())return null;
-		Expression<String> exp = root.get("ramGb");
+		Expression<String> exp = root.get("hddGb");
 		return cb.equal(exp, search);
 	}
 	

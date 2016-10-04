@@ -12,12 +12,14 @@
 		<logout logout-url="/logout" logout-success-url="/"/>
 		<csrf />
 		
-	<!-- 	<remember-me key="myAppKey" user-service-ref="userDetailsService"/> -->
+<!-- 	<remember-me key="myAppKey" user-service-ref="userDetailsService"/>-->
+	
 	</http>
 	
-<!-- 	<user-service> -->
-<!-- 		<user name="admin" authorities="ROLE_ADMIN" password="admin"/> -->
-<!-- 	</user-service> -->
+	<!-- <user-service> 
+ 		<user name="admin" authorities="ROLE_ADMIN" password="admin"/>
+ 	</user-service> 
+	 -->
 	<beans:bean id="encoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 			<beans:constructor-arg name="strength" value="5" />

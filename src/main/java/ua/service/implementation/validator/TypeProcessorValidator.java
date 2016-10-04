@@ -1,5 +1,8 @@
 package ua.service.implementation.validator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -10,6 +13,7 @@ import ua.service.TypeProcessorService;
 public class TypeProcessorValidator implements Validator {
 
 	private final TypeProcessorService typeprocessorService;
+	private static final Pattern p = Pattern.compile("^[a-z]{1,15}$");
 
 	public TypeProcessorValidator(TypeProcessorService typeprocessorService) {
 		this.typeprocessorService = typeprocessorService;
@@ -27,6 +31,10 @@ public class TypeProcessorValidator implements Validator {
 		TypeProcessor form = (TypeProcessor) target;
 		if(form.getId()==0)if(typeprocessorService.findByName(form.getName())!=null){
 			errors.rejectValue("name", "", "TypeProcessor already exists");
+		}
+		Matcher m = p.matcher(form.getName());
+		if(!m.matches()){
+			errors.rejectValue("name", "", "name format is a-z ");
 		}
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "", "Can`t be empty");
 	}

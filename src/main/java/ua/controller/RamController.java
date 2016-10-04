@@ -38,23 +38,17 @@ public class RamController {
 		return new RamFilterForm();
 	}
 	
-	@InitBinder("ram")
+	@InitBinder("ramGb")
 	protected void initBinder(WebDataBinder binder){
+		
 	   binder.setValidator(new RamValidator(ramService));
 	}
 
-//	@RequestMapping("/admin/ram")
-//	public String showRam(Model model,
-//			@PageableDefault(5) Pageable pageable,
-//			@ModelAttribute(value="filter") RamFilterForm form){
-//				model.addAttribute("page", ramService.findAll(pageable, form));
-//		return "adminRam";
-//	}
-	
-
 	@RequestMapping("/admin/ram")
-	public String showRam(Model model, @PageableDefault(5) Pageable pageable){
-		model.addAttribute("page", ramService.findAll(pageable));
+	public String show(Model model,
+			@PageableDefault(5) Pageable pageable,
+			@ModelAttribute(value="filter") RamFilterForm form){
+		model.addAttribute("page", ramService.findAll(pageable, form));
 		return "adminRam";
 	}
 	
@@ -72,23 +66,24 @@ public class RamController {
 			@PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value="filter") RamFilterForm form){
 		model.addAttribute("ram", ramService.findOne(id));
-//		model.addAttribute("page", ramService.findAll(pageable, form));
+		model.addAttribute("page", ramService.findAll(pageable, form));
 		return "adminRam";
 	}
 	
 	@RequestMapping(value= "/admin/ram", method=RequestMethod.POST)
-	public String save(@ModelAttribute("ram") @Valid Ram ram,
+	public String save(@ModelAttribute("ramGb") @Valid Ram ramGb,
 			BindingResult br,
 			@PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value="filter") RamFilterForm form,
 			Model model){
 		if(br.hasErrors()){
-//			model.addAttribute("page", ramService.findAll(pageable, form));
+			model.addAttribute("page", ramService.findAll(pageable, form));
 			return "adminRam";
 		}
-		ramService.save(ram);
+		ramService.save(ramGb);
 		return "redirect:/admin/ram"+getParams(pageable, form);
 	}
+	
 	
 	
 	private String getParams(Pageable pageable, RamFilterForm form){

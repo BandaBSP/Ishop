@@ -26,14 +26,14 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 		coreprocessorRepository.save(coreprocessor);
 	}
 
-	@Override
-	public ÑoreProcessor findByName(String core) {
-			return coreprocessorRepository.findOne(Integer.valueOf(core));
-	}
-//
 //	@Override
-//	public void delete(String core) {
-//		coreprocessorRepository.delete(core);
+//	public ÑoreProcessor findByName(String name) {
+//		return coreprocessorRepository.findByName(name);
+//	}
+
+//	@Override
+//	public void delete(String name) {
+//		coreprocessorRepository.delete(name);
 //	}
 
 	@Override
@@ -59,10 +59,14 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 
 	@Override
 	public Page<ÑoreProcessor> findAll(Pageable pageable, ÑoreProcessorFilterForm form) {
-		return coreprocessorRepository.findAll(new ÑoreProcessorFilterForm form, pageable);
+		return coreprocessorRepository.findAll((new ÑoreProcessorFilterAdapter(form)), pageable);
 	}
 
-
+	@Override
+	public ÑoreProcessor findByName(String core) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public void delete(String core) {
@@ -70,4 +74,5 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 		
 	}
 
+	
 }

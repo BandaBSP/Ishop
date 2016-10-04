@@ -7,16 +7,16 @@ import ua.service.HddService;
 
 public class HddEditor extends PropertyEditorSupport {
 
-	private final HddService hddService;
+	private final HddService hddGbService;
 
-	public HddEditor(HddService hddService) {
-		this.hddService = hddService;
+	public HddEditor(HddService hddGbService) {
+		this.hddGbService = hddGbService;
 	}
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		Hdd hdd = hddService.findOne(Integer
+		Hdd hddGb = hddGbService.findOne(Integer
 				.valueOf(text));
-		setValue(hdd);
+		setValue(hddGb);
 	}
 }

@@ -32,21 +32,18 @@ $(function() {
 	<div class="col-md-3 col-xs-12">
 			<form:form action="/admin/processor" class="form-inline" method="get" modelAttribute="filter">
 				<custom:hiddenInputs excludeParams="min, max, msIds, ingredientIds, _ingredientIds, _msIds"/>
-				<div class="form-group">
-					<form:input path="min" placeholder="min" class="form-control"/>
-					<form:input path="max" placeholder="max" class="form-control"/>
-				</div>
+				
 				<div class="form-group">
 					<h4>type processor</h4>
 				</div>
 				<div class="form-group">
-					<form:checkboxes items="${typeprocessors}" path="msIds" itemLabel="name" itemValue="id" />
+					<form:checkboxes items="${typeprocessors}" path="ingredientIds" itemLabel="name" itemValue="id" />
 				</div>
 				 <div class="form-group">
 					<h4>core processor</h4>
 				</div>
 				<div class="form-group">
-					<form:checkboxes items="${coreprocessors}" path="ingredientIds" itemLabel="core" itemValue="id"/>
+					<form:checkboxes items="${coreprocessors}" path="msIds" itemLabel="core" itemValue="id"/>
 				</div> 
 				<div class="form-group">
 				
@@ -85,8 +82,14 @@ $(function() {
 			<div class="row">
 			<div class="col-md-3"><img class="img-thumbnail" width="100" src="/images/processor/${processor.id}${processor.path}?version=${processor.version}" /></div>
 				<div class="col-md-4">${processor.typeprocessor.name} ${processor.coreprocessor.core}  core </div>
-				
-			</div>
+			
+				<div class="col-md-4 col-xs-4">
+					<a href="/admin/processor/delete/${processor.id}<custom:allParams/>">delete</a>
+				</div>
+				<div class="col-md-4 col-xs-4">
+					<a href="/admin/processor/update/${processor.id}<custom:allParams/>">update</a>
+				</div>
+				</div>
 		</c:forEach>
 		<div class="col-md-12 text-center">
 			<custom:pageable page="${page}" cell="<li></li>" container="<ul class='pagination'></ul>" />
@@ -102,8 +105,6 @@ $(function() {
 						<custom:sort innerHtml="typeprocessor desc" paramValue="typeprocessor,desc"/>
 						 <custom:sort innerHtml="coreprocessor core asc" paramValue="coreprocessor.core"/>
 						<custom:sort innerHtml="coreprocessor core desc" paramValue="coreprocessor.core,desc"/>
-						<%-- <custom:sort innerHtml="Ms name asc" paramValue="measuringSystem.name"/>
-						<custom:sort innerHtml="Ms name desc" paramValue="measuringSystem.name,desc"/>  --%>
 					</ul>
 				</div>
 			</div>
