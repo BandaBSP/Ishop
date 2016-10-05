@@ -50,6 +50,7 @@ public class ProcessorImpl implements ProcessorService {
 	@Override
 	public void save(ProcessorForm form) {
 		Processor processor = new Processor();
+		processor.setName(form.getTypeprocessor().getName()+" "+ form.getCoreprocessor().getCore()+"core"  );
 		processor.setCoreprocessor(form.getCoreprocessor());
 		processor.setTypeprocessor(form.getTypeprocessor());
 		processor.setId(form.getId());
