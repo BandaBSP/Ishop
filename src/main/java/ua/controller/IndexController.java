@@ -20,6 +20,12 @@ public class IndexController {
 		return "adminPanel";
 	}
 	
+	@RequestMapping("/coreprocessor")
+	public String showCoreProcessor() {
+		return "coreprocessor";
+	}
+	
+	
 	@RequestMapping("/sait")
 	public String showsait() {
 		return "sait";
@@ -35,7 +41,8 @@ public class IndexController {
 	public String showAdminRam() {
 		return "adminRam";
 	}
-
+	
+	
 	@RequestMapping("/adminVideoadapter")
 	public String showAdminVideoAdapter() {
 		return "adminvideoadapter";

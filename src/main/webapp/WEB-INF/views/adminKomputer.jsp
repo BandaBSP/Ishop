@@ -120,7 +120,8 @@
 				<td>${komputer.hdd.hddGb}</td>
 				<td>${komputer.ram.ramGb}</td>
 				<td>${komputer.videoadapter.name}</td>
-				<td>${komputer.processor.name}</td>
+				<td>${komputer.processor.typeprocessor.name}</td>
+				<td>${komputer.processor.coreprocessor.core}</td>
 				<td>${komputer.price}</td>
 				
 				<td><a href="/admin/komputer/delete/${komputer.id}">delete_</a></td>

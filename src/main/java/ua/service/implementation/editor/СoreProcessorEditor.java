@@ -15,8 +15,7 @@ public class ÑoreProcessorEditor extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		ÑoreProcessor coreprocessor = coreprocessorService.findOne(Integer
-				.valueOf(text));
+		ÑoreProcessor coreprocessor = coreprocessorService.findOne1(Integer.valueOf(text));
 		setValue(coreprocessor);
 	}
 }

@@ -28,26 +28,14 @@ public class Processor {
 	private List<Komputer> komputers = new ArrayList<Komputer>();
 
 	private String name;
-
-	private int version;
-
-	private String path;
 	
 
-	public int getVersion() {
-		return version;
+	public String getName() {
+		return name;
 	}
 
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Processor() {
@@ -101,12 +89,5 @@ public class Processor {
 		this.komputers = komputers;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 }

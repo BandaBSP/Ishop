@@ -6,12 +6,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.entity.ÑoreProcessor;
+import ua.form.ÑoreProcessorForm;
 import ua.form.filter.ÑoreProcessorFilterForm;
 
 
 public interface ÑoreProcessorService {
 
-	void save(ÑoreProcessor typeprocessor);
+	void save(ÑoreProcessorForm typeprocessor);
 
 	ÑoreProcessor findByName(String core);
 
@@ -21,7 +22,9 @@ public interface ÑoreProcessorService {
 
 	void delete(int id);
 
-	ÑoreProcessor findOne(int id);
+	ÑoreProcessorForm findOne(int id);
+	ÑoreProcessor findOne1(int id);
+	
 
 	Page<ÑoreProcessor> findAll(Pageable pageable);
 

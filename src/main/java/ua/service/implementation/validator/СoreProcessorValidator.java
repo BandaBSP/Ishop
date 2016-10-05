@@ -7,7 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import ua.entity.ÑoreProcessor;
+import ua.form.ÑoreProcessorForm;
 import ua.service.ÑoreProcessorService;
 
 public class ÑoreProcessorValidator implements Validator {
@@ -21,18 +21,16 @@ public class ÑoreProcessorValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return ÑoreProcessor.class.equals(clazz);
+		return ÑoreProcessorForm.class.equals(clazz);
 	}
-	
-	
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		ÑoreProcessor form = (ÑoreProcessor) target;
-		if(form.getId()==0)if(coreprocessorService.findByName(Integer.toString(form.getCore()))!=null){
+		ÑoreProcessorForm form = (ÑoreProcessorForm) target;
+		if(form.getId()==0)if(coreprocessorService.findByName(form.getCore())!=null){
 			errors.rejectValue("core", "", "ÑoreProcessor already exists");
 		}
-		Matcher m = p.matcher(Integer.toString(form.getCore()));
+		Matcher m = p.matcher(form.getCore());
 		if(!m.matches()){
 			errors.rejectValue("core", "", "core format is 1 to 99");
 		}

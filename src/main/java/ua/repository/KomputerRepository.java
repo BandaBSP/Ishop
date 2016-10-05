@@ -10,10 +10,12 @@ import ua.entity.Komputer;
 public interface KomputerRepository extends JpaRepository<Komputer, Integer> {
 
 	@Query("SELECT ai FROM Komputer ai "
-			+ "LEFT JOIN FETCH ai.processor "
+			+ "LEFT JOIN FETCH ai.processor p "
 			+ "LEFT JOIN FETCH ai.videoadapter "
 			+ "LEFT JOIN FETCH ai.hdd "
-			+ "LEFT JOIN FETCH ai.ram ")
+			+ "LEFT JOIN FETCH ai.ram "
+			+ "LEFT JOIN FETCH p.typeprocessor "
+			+ "LEFT JOIN FETCH p.coreprocessor")
 	List<Komputer> findAll();
 	
 	

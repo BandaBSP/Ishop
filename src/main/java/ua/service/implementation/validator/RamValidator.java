@@ -35,7 +35,6 @@ public class RamValidator implements Validator {
 		if(!m.matches()){
 			errors.rejectValue("ramGb", "", "ramGb format is 1 to 99");
 		}
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ramGb", "",
-				"Can`t be empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ramGb", "",	"Can`t be empty");
 	}
 }

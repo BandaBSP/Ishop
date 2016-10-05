@@ -14,9 +14,5 @@ public interface ÑoreProcessorRepository extends JpaRepository<ÑoreProcessor, In
 //
 //	ÑoreProcessor findByName(String core);
 //	
-//	@Modifying
-//	@Query("DELETE FROM ÑoreProcessor c WHERE c.core=:core")
-//	void deleteByName(@Param("core") String core);
-
-
+	
 }

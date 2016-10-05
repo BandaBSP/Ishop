@@ -52,6 +52,8 @@ public class RamController {
 		return "adminRam";
 	}
 	
+
+	
 	@RequestMapping("/admin/ram/delete/{id}")
 	public String delete(@PathVariable int id,
 			@PageableDefault(5) Pageable pageable,

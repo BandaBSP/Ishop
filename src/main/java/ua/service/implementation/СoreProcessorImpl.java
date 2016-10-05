@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.entity.ÑoreProcessor;
+import ua.form.ÑoreProcessorForm;
 import ua.form.filter.ÑoreProcessorFilterForm;
 import ua.repository.ÑoreProcessorRepository;
 import ua.service.ÑoreProcessorService;
@@ -22,8 +23,11 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 	private ÑoreProcessorRepository coreprocessorRepository;
 
 	@Override
-	public void save(ÑoreProcessor coreprocessor) {
-		coreprocessorRepository.save(coreprocessor);
+	public void save(ÑoreProcessorForm form) {
+		ÑoreProcessor entity = new ÑoreProcessor();
+		entity.setCore(Integer.valueOf(form.getCore()));
+		entity.setId(form.getId());
+		coreprocessorRepository.save(entity);
 	}
 
 //	@Override
@@ -47,8 +51,12 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 	}
 
 	@Override
-	public ÑoreProcessor findOne(int id) {
-		return coreprocessorRepository.findOne(id);
+	public ÑoreProcessorForm findOne(int id) {
+		ÑoreProcessor entity = coreprocessorRepository.findOne(id);
+		ÑoreProcessorForm form = new ÑoreProcessorForm();
+		form.setCore(String.valueOf(entity.getCore()));
+		form.setId(entity.getId());
+		return form;
 	}
 
 	@Override
@@ -73,6 +81,13 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public ÑoreProcessor findOne1(int id) {
+		return coreprocessorRepository.findOne(id);
+	}
+
+	
 
 	
 }
