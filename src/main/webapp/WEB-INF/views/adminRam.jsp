@@ -37,13 +37,19 @@
 	<div class="col-md-7 col-xs-12">
 		<div class="col-md-12 col-xs-12">
 			<form:form action="/admin/ram" method="post" class="form-inline"
-				modelAttribute="ram">
+				modelAttribute="ram" enctype="multipart/form-data">
 				<form:hidden path="id" />
-				<custom:hiddenInputs excludeParams="ramGb, id" />
+				<custom:hiddenInputs excludeParams="ramGb, id, price" />
 				<div class="form-group">
-					<form:input id="ramGb" path="ramGb" placeholder="ram name" class="form-control" />
-						<label for="ramGb"><form:errors path="ramGb" /></label>
-						<button type="submit" class="btn btn-primary">Create ram</button>
+					<form:input id="ramGb" path="ramGb" placeholder="ram name"
+						class="form-control" />
+						<form:input id="price" path="price" placeholder="price"
+						class="form-control" />
+					<label for="ramGb"><form:errors path="ramGb" /></label> <label
+						class="btn btn-default btn-file"> Browse <input
+						type="file" name="file" style="display: none;">
+					</label>
+					<button type="submit" class="btn btn-primary">Create ram</button>
 				</div>
 			</form:form>
 		</div>
@@ -57,15 +63,16 @@
 			<h4>Update</h4>
 		</div>
 		<c:forEach items="${page.content}" var="ram">
-			<div class="col-md-4 col-xs-4">${ram.ramGb}</div>
+		<div class="col-md-3"><img class="img-thumbnail" width="100" src="/images/ram/${ram.id}${ram.path}?version=${ram.version}" /></div>
+			<div class="col-md-4 col-xs-4">${ram.ramGb} ${ram.price}</div>
 			<div class="col-md-4 col-xs-4">
 				<a href="/admin/ram/delete/${ram.id}<custom:allParams/>">delete</a>
 			</div>
-			
+
 			<div class="col-md-4 col-xs-4">
 				<a href="/admin/ram/update/${ram.id}<custom:allParams/>">update</a>
 			</div>
-			
+
 		</c:forEach>
 		<div class="col-md-12 col-xs-12 text-center">
 			<custom:pageable page="${page}" cell="<li></li>"

@@ -23,6 +23,37 @@ public class Ram {
 	private List<Komputer> komputers = new ArrayList<Komputer>();
 
 	private int ramGb;
+	
+	private int price;
+	
+	private int version;
+	
+	private String path;
+	
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
 
 	public Ram() {
 		super();
@@ -61,6 +92,28 @@ public class Ram {
 		this.id = id;
 		this.komputers = komputers;
 		this.ramGb = ramGb;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ram other = (Ram) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 	
 	

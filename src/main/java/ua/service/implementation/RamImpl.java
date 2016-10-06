@@ -12,6 +12,8 @@ import ua.entity.Ram;
 import ua.form.RamForm;
 import ua.form.filter.RamFilterForm;
 import ua.repository.RamRepository;
+import ua.service.FileWriter;
+import ua.service.FileWriter.Folder;
 import ua.service.RamServiñe;
 import ua.service.implementation.specification.RamFilterAdapter;
 
@@ -21,6 +23,9 @@ public class RamImpl implements RamServiñe {
 
 	@Autowired
 	private RamRepository ramGbRepository;
+	
+	@Autowired
+	private FileWriter fileWriter;
 
 	
 
@@ -77,8 +82,19 @@ public class RamImpl implements RamServiñe {
 		Ram entity = new Ram();
 		entity.setRamGb(Integer.valueOf(form.getRamGb()));
 		entity.setId(form.getId());
-		ramGbRepository.save(entity);		
+		entity.setPrice(Integer.valueOf(form.getPrice()));
+		entity.setPath(form.getPath());
+		entity.setVersion(form.getVersion());
+		ramGbRepository.saveAndFlush(entity);
+		String extension = fileWriter.write(Folder.RAM, form.getFile(), entity.getId());
+		if(extension!=null){
+			entity.setVersion(form.getVersion()+1);
+			entity.setPath(extension);
+			ramGbRepository.save(entity);
+			}
 	}
+	
+	
 
 	@Override
 	public RamForm findOne(int id) {
@@ -86,6 +102,9 @@ public class RamImpl implements RamServiñe {
 		RamForm form = new RamForm();
 		form.setRamGb(String.valueOf(entity.getRamGb()));
 		form.setId(entity.getId());
+		form.setPrice(String.valueOf(entity.getPrice()));
+		form.setPath(entity.getPath());
+		form.setVersion(entity.getVersion());
 		return form;
 	}
 

@@ -26,9 +26,9 @@ public class IndexController {
 //	}
 	
 	
-	@RequestMapping("/sait")
-	public String showsait() {
-		return "sait";
+	@RequestMapping("/contactus")
+	public String showcontactus() {
+		return "contactus";
 	}
 	
 	@RequestMapping("/login")

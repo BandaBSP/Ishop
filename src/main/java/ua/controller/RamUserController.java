@@ -31,7 +31,7 @@ public class RamUserController {
 
 	@RequestMapping("/ram")
 	public String show(Model model,
-			@PageableDefault(5) Pageable pageable,
+			@PageableDefault(6) Pageable pageable,
 			@ModelAttribute(value="filter") RamFilterForm form){
 		model.addAttribute("page", ramService.findAll(pageable, form));
 		return "ram";

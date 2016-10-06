@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface FileWriter {
 
 	enum Folder{
-		ÑOREPPROCESSOR, TYPEPROCESSOR, PROCESSOR;
+		ÑOREPPROCESSOR, TYPEPROCESSOR, RAM, PROCESSOR ;
 	}
 	
 	String write(Folder folder, MultipartFile file, int id);
