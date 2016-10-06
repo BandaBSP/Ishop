@@ -10,8 +10,9 @@ public class IndexController {
 
 	@RequestMapping("/")
 	public String showIndex(Principal principal){
-		System.out.println(principal);
-		System.out.println(System.getProperty("catalina.home"));
+//		System.out.println(principal);
+//		System.out.println(System.getProperty("catalina.home"));
+		System.out.println("gotovo");
 		return "index";
 	}
 	

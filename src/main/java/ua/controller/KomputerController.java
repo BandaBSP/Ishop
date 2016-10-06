@@ -54,7 +54,7 @@ public class KomputerController {
 	
 
 	@ModelAttribute("komputer")
-	public KomputerForm getForm(KomputerForm form){
+	public KomputerForm getForm(){
 		return new KomputerForm();
 	}
 	
