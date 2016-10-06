@@ -21,13 +21,13 @@ public class Hdd {
 
 	private TypeHdd typeHdd;
 
-	private String hddGb;
+	private int hddGb;
 
 	public TypeHdd getTypeHdd() {
 		return typeHdd;
 	}
 
-	public Hdd(int id, TypeHdd typeHdd, String hddGb, List<Komputer> komputers) {
+	public Hdd(int id, TypeHdd typeHdd, int hddGb, List<Komputer> komputers) {
 		super();
 		this.id = id;
 		this.typeHdd = typeHdd;
@@ -43,7 +43,7 @@ public class Hdd {
 		this.typeHdd = typeHdd;
 	}
 
-	public Hdd(String hdd) {
+	public Hdd(int hdd) {
 		this.hddGb = hdd;
 	}
 
@@ -63,11 +63,11 @@ public class Hdd {
 		this.id = id;
 	}
 
-	public String getHddGb() {
+	public int getHddGb() {
 		return hddGb;
 	}
 
-	public void setHddGb(String hddGb) {
+	public void setHddGb(int hddGb) {
 		this.hddGb = hddGb;
 	}
 

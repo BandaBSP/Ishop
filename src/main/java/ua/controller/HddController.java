@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ua.entity.Hdd;
 import ua.entity.TypeHdd;
+import ua.form.HddForm;
 import ua.form.filter.HddFilterForm;
 import ua.service.HddService;
 import ua.service.implementation.validator.HddValidator;
@@ -30,8 +30,8 @@ public class HddController {
 	private HddService hddGbService;
 	
 	@ModelAttribute("hdd")
-	public Hdd getForm(){
-		return new Hdd();
+	public HddForm getForm(HddForm form){
+		return new HddForm();
 	}
 	
 	@ModelAttribute("filter")
@@ -73,7 +73,7 @@ public class HddController {
 	}
 	
 	@RequestMapping(value= "/admin/hdd", method=RequestMethod.POST)
-	public String save(@ModelAttribute("hddGb") @Valid Hdd hddGb,
+	public String save(@ModelAttribute("hddGb") @Valid HddForm hddGb,
 			BindingResult br,
 			@PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value="filter") HddFilterForm form,

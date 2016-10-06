@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.entity.Ram;
+import ua.form.RamForm;
 import ua.form.filter.RamFilterForm;
 import ua.repository.RamRepository;
 import ua.service.RamServiñe;
@@ -21,10 +22,7 @@ public class RamImpl implements RamServiñe {
 	@Autowired
 	private RamRepository ramGbRepository;
 
-	@Override
-	public void save(Ram ram) {
-		ramGbRepository.save(ram);
-	}
+	
 
 //	@Override
 //	public Ram findByName(String ramGb) {
@@ -47,7 +45,7 @@ public class RamImpl implements RamServiñe {
 	}
 
 	@Override
-	public Ram findOne(int id) {
+	public Ram findOne1(int id) {
 		return ramGbRepository.findOne(id);
 	}
 
@@ -73,4 +71,22 @@ public class RamImpl implements RamServiñe {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void save(RamForm form) {
+		Ram entity = new Ram();
+		entity.setRamGb(Integer.valueOf(form.getRamGb()));
+		entity.setId(form.getId());
+		ramGbRepository.save(entity);		
+	}
+
+	@Override
+	public RamForm findOne(int id) {
+		Ram entity = ramGbRepository.findOne(id);
+		RamForm form = new RamForm();
+		form.setRamGb(String.valueOf(entity.getRamGb()));
+		form.setId(entity.getId());
+		return form;
+	}
+
 }

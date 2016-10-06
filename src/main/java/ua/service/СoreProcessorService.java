@@ -12,7 +12,7 @@ import ua.form.filter.ÑoreProcessorFilterForm;
 
 public interface ÑoreProcessorService {
 
-	void save(ÑoreProcessorForm typeprocessor);
+	void save(ÑoreProcessorForm coreprocessor);
 
 	ÑoreProcessor findByName(String core);
 

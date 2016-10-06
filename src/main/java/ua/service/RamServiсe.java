@@ -6,11 +6,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.entity.Ram;
+import ua.form.RamForm;
 import ua.form.filter.RamFilterForm;
 
 public interface RamServiñe {
 	
-	void save(Ram ram);
+	void save(RamForm ramGb);
 
 	Ram findByName(String ramGb);
 
@@ -19,8 +20,10 @@ public interface RamServiñe {
 	List<Ram> findAll();
 
 	void delete(int id);
+	
+	RamForm findOne(int id);
 
-	Ram findOne(int id);
+	Ram findOne1(int id);
 
 	Page<Ram> findAll(Pageable pageable);
 

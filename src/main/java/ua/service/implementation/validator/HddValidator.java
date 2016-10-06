@@ -7,7 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import ua.entity.Hdd;
+import ua.form.HddForm;
 import ua.service.HddService;
 
 public class HddValidator implements Validator {
@@ -21,14 +21,14 @@ public class HddValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return Hdd.class.equals(clazz);
+		return HddForm.class.equals(clazz);
 	}
 	
 	
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		Hdd form = (Hdd) target;
+		HddForm form = (HddForm) target;
 		if(form.getId()==0)if(hddGbService.findByName(form.getHddGb())!=null){
 			errors.rejectValue("hddGb", "", "Hdd already exists");
 		}

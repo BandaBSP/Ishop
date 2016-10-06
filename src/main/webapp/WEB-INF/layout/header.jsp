@@ -6,33 +6,29 @@
 	prefix="security"%>
 
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/"><img class="img-thumbnail" width="80" src="/resources/image/maxresdefault.jpg?version=1" /></a>
-    </div>
-    <ul class="nav navbar-nav">
-<!--       	<li><a>Home</a></li> -->
-<!--       	<li><a>Page 1</a></li> -->
-<!--       	<li><a>Page 2</a></li> -->
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-    	<li><a>${authUser.login}</a></li>
-    <security:authorize access="isAuthenticated()">
-			<li>
-				<form:form action="/logout" method="post"
-					class="navbar-form navbar-right">
-					<button type="submit" class="btn btn-default">Logout</button>
-				</form:form>
-			</li>
-		</security:authorize>
-		<security:authorize access="!isAuthenticated()">
-			<li>
-				<form:form action="/login" method="get"
-					class="navbar-form navbar-right">
-					<button type="submit" class="btn btn-default">Login</button>
-				</form:form>
-			</li>
-	</security:authorize>
-    </ul>
-  </div>
+	<div class="container">
+		<div class="navbar-header"></div>
+		<ul class="nav navbar-nav">
+			<a href="/"><img src="resources/images/home/logo.png" alt="" /></a>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<security:authorize access="isAuthenticated()and hasRole('ROLE_USER')">
+				<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+			</security:authorize>
+			<security:authorize	access="isAuthenticated() and hasRole('ROLE_ADMIN')">
+			<li><a href="/admin"><i class="fa fa-star"></i>Admin panel</a>	</li>
+			</security:authorize>
+			<security:authorize access="!isAuthenticated()">
+				<li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
+			</security:authorize>
+
+			<li><a>${authUser.login}</a></li>
+			<security:authorize access="isAuthenticated()">
+				<li><form:form action="/logout" method="post"
+						class="navbar-form navbar-right">
+						<button type="submit" class="btn btn-default">Logout</button>
+					</form:form></li>
+			</security:authorize>
+		</ul>
+	</div>
 </nav>

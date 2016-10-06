@@ -6,11 +6,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.entity.Hdd;
+import ua.form.HddForm;
 import ua.form.filter.HddFilterForm;
 
 public interface HddService {
 
-	void save(Hdd hddGb);
+	void save(HddForm hddGb);
 
 	Hdd findByName(String hddGb);
 
@@ -19,8 +20,10 @@ public interface HddService {
 	List<Hdd> findAll();
 
 	void delete(int id);
+	
+	HddForm findOne(int id);
 
-	Hdd findOne(int id);
+	Hdd findOne1(int id);
 
 	Page<Hdd> findAll(Pageable pageable);
 

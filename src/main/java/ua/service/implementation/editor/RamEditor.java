@@ -15,8 +15,7 @@ public class RamEditor extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		Ram ram = ramServiñe.findOne(Integer
-				.valueOf(text));
+		Ram ram = ramServiñe.findOne1(Integer.valueOf(text));
 		setValue(ram);
 	}
 }

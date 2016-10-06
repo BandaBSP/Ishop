@@ -5,21 +5,21 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ua.entity.Hdd;
 import ua.entity.Komputer;
-import ua.entity.Processor;
-import ua.entity.Ram;
-import ua.entity.VideoAdapter;
 import ua.form.KomputerForm;
+import ua.form.filter.KomputerFilterForm;
 import ua.repository.HddRepository;
 import ua.repository.KomputerRepository;
 import ua.repository.ProcessorRepository;
 import ua.repository.RamRepository;
 import ua.repository.VideoAdapterRepository;
 import ua.service.KomputerService;
+import ua.service.implementation.specification.KomputerFilterAdapter;
 
 @Service
 @Transactional
@@ -40,33 +40,20 @@ public class KomputerImpl implements KomputerService {
 	@Autowired
 	private VideoAdapterRepository videoadapterRepository;
 
-	
 	@Override
 	public void save(KomputerForm form) {
-		Komputer komputer = new Komputer(new Hdd (), new Ram (), new VideoAdapter (),
-				new Processor ());
-		komputer.setHdd(form.getHdd());
-		komputer.setProcessor(form.getProcessor());
-		komputer.setRam(form.getRam());
-		komputer.setVideoadapter(form.getVideoadapter());
-		komputer.setPrice(Integer.parseInt(form.getPrice()));
-		System.out.println(komputer.getPrice());
-		komputer.setId(form.getId());
-		komputerRepository.save(komputer);
-	}
-
-	@Override
-	public KomputerForm findForForm(int id) {
-		KomputerForm form = new KomputerForm();
-		form.setId(form.getId());
-		form.setHdd(form.getHdd());
-		form.setProcessor(form.getProcessor());
-		form.setRam(form.getRam());
-		form.setVideoadapter(form.getVideoadapter());
-		form.setPrice(form.getPrice());
-		return form;
+		
+		Komputer entity = new Komputer();
+		entity.setHdd((form.getHdd()));
+		entity.setRam(form.getRam());
+		entity.setVideoadapter(form.getVideoadapter());
+		entity.setProcessor(form.getProcessor());
+		entity.setPrice(form.getPrice());
+		entity.setId(form.getId());
+		komputerRepository.save(entity);
 	}
 	
+
 	@Override
 	public List<Komputer> findAll() {
 		return komputerRepository.findAll();
@@ -77,10 +64,47 @@ public class KomputerImpl implements KomputerService {
 		komputerRepository.delete(id);
 	}
 
-
 	@Override
-	public Komputer findOne(Integer valueOf) {
-		return komputerRepository.findOne(valueOf);
+	public Komputer findOne1(int id) {
+		return komputerRepository.findOne(id);
 	}
 
+	@Override
+	public Page<Komputer> findAll(Pageable pageable) {
+		return komputerRepository.findAll(pageable);
+	}
+
+
+	@Override
+	public Page<Komputer> findAll(Pageable pageable, KomputerFilterForm form) {
+		return komputerRepository.findAll(new KomputerFilterAdapter(form), pageable);
+	}
+
+
+	@Override
+	public Komputer findByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void delete(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public KomputerForm findOne(int id) {
+		Komputer entity = komputerRepository.findOne(id);
+		KomputerForm form = new KomputerForm();
+		form.setHdd((entity.getHdd()));
+		form.setRam(entity.getRam());
+		form.setVideoadapter(entity.getVideoadapter());
+		form.setProcessor(entity.getProcessor());
+		form.setPrice(String.valueOf(entity.getPrice()));
+		form.setId(entity.getId());
+		return form;
+	}
 }

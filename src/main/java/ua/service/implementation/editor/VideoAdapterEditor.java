@@ -15,8 +15,7 @@ public class VideoAdapterEditor extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		VideoAdapter videoadapter = videoadapterService.findOne(Integer
-				.valueOf(text));
+		VideoAdapter videoadapter = videoadapterService.findOne(Integer.valueOf(text));
 		setValue(videoadapter);
 	}
 }

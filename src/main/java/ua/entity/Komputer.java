@@ -33,7 +33,7 @@ public class Komputer {
 //	@OneToMany(mappedBy = "komputer")
 //	private List<User> komputers = new ArrayList<User>();
 
-	private int price;
+	private String price;
 
 	public Komputer() {
 		super();
@@ -42,7 +42,7 @@ public class Komputer {
 	
 
 	public Komputer(int id, Hdd hdd, Ram ram, VideoAdapter videoadapter,
-			Processor processor, int price) {
+			Processor processor, String price) {
 		super();
 		this.id = id;
 		this.hdd = hdd;
@@ -56,7 +56,7 @@ public class Komputer {
 
 	public Komputer(int id, Hdd hdd, OpticalDrive opticaldrive, Ram ram,
 			VideoAdapter videoadapter, Processor processor,
-			List<User> komputers, int price) {
+			List<User> komputers, String price) {
 		super();
 		this.id = id;
 		this.hdd = hdd;
@@ -139,16 +139,44 @@ public class Komputer {
 //		this.komputers = komputers;
 //	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
-	public void setPrice(String valueOf) {
-		
+//	public void setPrice(String valueOf) {
+//		
+//	}
+
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
 	}
 
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Komputer other = (Komputer) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	
+	
 }

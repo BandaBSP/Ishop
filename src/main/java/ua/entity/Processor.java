@@ -30,6 +30,8 @@ public class Processor {
 	private String name;
 	
 
+	
+
 	public String getName() {
 		return name;
 	}

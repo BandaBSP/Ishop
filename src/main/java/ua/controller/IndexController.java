@@ -20,10 +20,10 @@ public class IndexController {
 		return "adminPanel";
 	}
 	
-	@RequestMapping("/coreprocessor")
-	public String showCoreProcessor() {
-		return "coreprocessor";
-	}
+//	@RequestMapping("/coreprocessor")
+//	public String show() {
+//		return "coreprocessor";
+//	}
 	
 	
 	@RequestMapping("/sait")

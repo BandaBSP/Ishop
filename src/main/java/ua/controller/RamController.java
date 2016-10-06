@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ua.entity.Ram;
+import ua.form.RamForm;
 import ua.form.filter.RamFilterForm;
 import ua.service.RamServiñe;
 import ua.service.implementation.validator.RamValidator;
@@ -29,8 +29,8 @@ public class RamController {
 	private RamServiñe ramService;
 	
 	@ModelAttribute("ram")
-	public Ram getForm(){
-		return new Ram();
+	public RamForm getForm(RamForm form){
+		return new RamForm();
 	}
 	
 	@ModelAttribute("filter")
@@ -73,7 +73,7 @@ public class RamController {
 	}
 	
 	@RequestMapping(value= "/admin/ram", method=RequestMethod.POST)
-	public String save(@ModelAttribute("ramGb") @Valid Ram ramGb,
+	public String save(@ModelAttribute("ramGb") @Valid RamForm ramGb,
 			BindingResult br,
 			@PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value="filter") RamFilterForm form,

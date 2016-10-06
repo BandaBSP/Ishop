@@ -6,8 +6,6 @@ public class ÑoreProcessorForm {
 
 	private String core;
 	
-	
-
 	public int getId() {
 		return id;
 	}

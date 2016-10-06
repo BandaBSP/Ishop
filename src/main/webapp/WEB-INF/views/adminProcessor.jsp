@@ -45,14 +45,13 @@
 			</form:select>
 			<form:select path="typeprocessor" items="${typeprocessors}" itemLabel="name" itemValue="id">
 			</form:select>
-			<form:input id="name" path="name" placeholder="processor name" class="form-control" />
-					<label for="name"><form:errors path="name" /></label>
-			<button type="submit" class="btn btn-primary">Create Recipe</button>
+			
+			<button type="submit" class="btn btn-primary">Create Processor</button>
 			</div>
 	</form:form>
 		</div>
 		<div class="col-md-4 col-xs-4">
-			<h4>Core Processor core</h4>
+			<h4>Processor </h4>
 		</div>
 		<div class="col-md-4 col-xs-4">
 			<h4>Delete</h4>
@@ -61,7 +60,7 @@
 			<h4>Update</h4>
 		</div>
 		<c:forEach items="${page.content}" var="processor">
-			<div class="col-md-4 col-xs-4">${processor.name} ${processor.typeprocessor.name} ${processor.coreprocessor.core}</div>
+			<div class="col-md-4 col-xs-4">${processor.name} </div>
 			<div class="col-md-4 col-xs-4">
 				<a
 					href="/admin/processor/delete/${processor.id}<custom:allParams/>">delete</a>
@@ -84,8 +83,10 @@
 					Sort <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<custom:sort innerHtml="core asc" paramValue="core" />
-					<custom:sort innerHtml="core desc" paramValue="core,desc" />
+					 <custom:sort innerHtml="typeprocessor asc" paramValue="typeprocessor.name"/>
+						<custom:sort innerHtml="typeprocessor desc" paramValue="typeprocessor.name,desc"/>
+						 <custom:sort innerHtml="coreprocessor core asc" paramValue="coreprocessor.core"/>
+						<custom:sort innerHtml="coreprocessor core desc" paramValue="coreprocessor.core,desc"/>
 				</ul>
 			</div>
 		</div>

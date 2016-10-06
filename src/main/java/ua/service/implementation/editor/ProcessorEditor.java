@@ -15,8 +15,7 @@ public class ProcessorEditor extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		Processor processor = processorService.findOne(Integer
-				.valueOf(text));
+		Processor processor = processorService.findOne(Integer.valueOf(text));
 		setValue(processor);
 	}
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.entity.Hdd;
+import ua.form.HddForm;
 import ua.form.filter.HddFilterForm;
 import ua.repository.HddRepository;
 import ua.service.HddService;
@@ -22,8 +23,12 @@ public class HddImpl implements HddService {
 	private HddRepository hddGbRepository;
 
 	@Override
-	public void save(Hdd hddGb) {
-		hddGbRepository.save(hddGb);
+	public void save(HddForm form) {
+		Hdd entity = new Hdd();
+		entity.setHddGb(Integer.valueOf(form.getHddGb()));
+		entity.setTypeHdd(form.getTypeHdd());
+		entity.setId(form.getId());
+		hddGbRepository.save(entity);
 	}
 
 //	@Override
@@ -47,7 +52,7 @@ public class HddImpl implements HddService {
 	}
 
 	@Override
-	public Hdd findOne(int id) {
+	public Hdd findOne1(int id) {
 		return hddGbRepository.findOne(id);
 	}
 
@@ -73,4 +78,15 @@ public class HddImpl implements HddService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public HddForm findOne(int id) {
+		Hdd entity = hddGbRepository.findOne(id);
+		HddForm form = new HddForm();
+		form.setHddGb(String.valueOf(entity.getHddGb()));
+		form.setTypeHdd(entity.getTypeHdd());
+		form.setId(entity.getId());
+		return form;
+	}
+
 }

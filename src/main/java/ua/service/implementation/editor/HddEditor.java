@@ -15,7 +15,7 @@ public class HddEditor extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		Hdd hddGb = hddGbService.findOne(Integer
+		Hdd hddGb = hddGbService.findOne1(Integer
 				.valueOf(text));
 		setValue(hddGb);
 	}

@@ -33,6 +33,7 @@ public class ProcessorImpl implements ProcessorService {
 
 	@Override
 	public void save(Processor processor) {
+		processor.setName(processor.getTypeprocessor().getName()+" "+ processor.getCoreprocessor().getCore()+" cores ");
 		processorRepository.save(processor);
 	}
 	
