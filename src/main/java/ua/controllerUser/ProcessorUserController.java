@@ -1,4 +1,4 @@
-package ua.controller;
+package ua.controllerUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -8,35 +8,39 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ua.entity.TypeProcessor;
-import ua.form.filter.TypeProcessorFilterForm;
+import ua.form.filter.ProcessorFilterForm;
+import ua.service.ProcessorService;
 import ua.service.TypeProcessorService;
+import ua.service.ÑoreProcessorService;
 
 @Controller
-public class TypeProcessorUserController {
+public class ProcessorUserController {
+	
+	@Autowired
+	private ProcessorService processorService;
 	
 	@Autowired
 	private TypeProcessorService typeprocessorService;
 	
-	@ModelAttribute("typeprocessor")
-	public TypeProcessor getForm(){
-		return new TypeProcessor();
-	}
+	@Autowired
+	private ÑoreProcessorService coreprocessorService;
 	
 	@ModelAttribute("filter")
-	public TypeProcessorFilterForm getFilter(){
-		return new TypeProcessorFilterForm();
+	public ProcessorFilterForm getFilter(){
+		return new ProcessorFilterForm();
 	}
-	
-	@RequestMapping("/typeprocessor")
+
+	@RequestMapping("/processor")
 	public String show(Model model,
-			@PageableDefault(5) Pageable pageable,
-			@ModelAttribute(value="filter") TypeProcessorFilterForm form){
-		model.addAttribute("page", typeprocessorService.findAll(pageable, form));
-		return "typeprocessor";
+			@PageableDefault() Pageable pageable,
+			@ModelAttribute(value="filter") ProcessorFilterForm form){
+		model.addAttribute("page", processorService.findAll(pageable, form));
+		model.addAttribute("typeprocessors", typeprocessorService.findAll());
+		model.addAttribute("coreprocessors", coreprocessorService.findAll());
+		return "processor";
 	}
 	
-//	private String getParams(Pageable pageable, TypeProcessorFilterForm form){
+//	private String getParams(Pageable pageable, ProcessorFilterForm form){
 //		StringBuilder buffer = new StringBuilder();
 //		buffer.append("?page=");
 //		buffer.append(String.valueOf(pageable.getPageNumber()+1));

@@ -1,43 +1,47 @@
-package ua.controller;
+package ua.controllerUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ua.form.RamForm;
-import ua.form.filter.RamFilterForm;
-import ua.service.RamServiñe;
+import ua.entity.TypeHdd;
+import ua.form.filter.HddFilterForm;
+import ua.service.HddService;
+import ua.service.implementation.validator.HddValidator;
 
 @Controller
-public class RamUserController {
+public class HddUserController {
 	
 	@Autowired
-	private RamServiñe ramService;
+	private HddService hddGbService;
 	
-	@ModelAttribute("ram")
-	public RamForm getForm(RamForm form){
-		return new RamForm();
-	}
 	
 	@ModelAttribute("filter")
-	public RamFilterForm getFilter(){
-		return new RamFilterForm();
+	public HddFilterForm getFilter(){
+		return new HddFilterForm();
 	}
 	
+	@InitBinder("hddGb")
+	protected void initBinder(WebDataBinder binder){
+	   binder.setValidator(new HddValidator(hddGbService));
+	}
 
-	@RequestMapping("/ram")
+	@RequestMapping("/hdd")
 	public String show(Model model,
-			@PageableDefault(6) Pageable pageable,
-			@ModelAttribute(value="filter") RamFilterForm form){
-		model.addAttribute("page", ramService.findAll(pageable, form));
-		return "ram";
+			@PageableDefault(5) Pageable pageable,
+			@ModelAttribute(value="filter") HddFilterForm form){
+		model.addAttribute("page", hddGbService.findAll(pageable, form));
+		model.addAttribute("hdds", TypeHdd.values());
+		return "hdd";
 	}
 	
-//	private String getParams(Pageable pageable, RamFilterForm form){
+//	private String getParams(Pageable pageable, HddFilterForm form){
 //		StringBuilder buffer = new StringBuilder();
 //		buffer.append("?page=");
 //		buffer.append(String.valueOf(pageable.getPageNumber()+1));

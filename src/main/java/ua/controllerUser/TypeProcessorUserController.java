@@ -1,47 +1,42 @@
-package ua.controller;
+package ua.controllerUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ua.entity.TypeHdd;
-import ua.form.filter.HddFilterForm;
-import ua.service.HddService;
-import ua.service.implementation.validator.HddValidator;
+import ua.entity.TypeProcessor;
+import ua.form.filter.TypeProcessorFilterForm;
+import ua.service.TypeProcessorService;
 
 @Controller
-public class HddUserController {
+public class TypeProcessorUserController {
 	
 	@Autowired
-	private HddService hddGbService;
+	private TypeProcessorService typeprocessorService;
 	
+	@ModelAttribute("typeprocessor")
+	public TypeProcessor getForm(){
+		return new TypeProcessor();
+	}
 	
 	@ModelAttribute("filter")
-	public HddFilterForm getFilter(){
-		return new HddFilterForm();
+	public TypeProcessorFilterForm getFilter(){
+		return new TypeProcessorFilterForm();
 	}
 	
-	@InitBinder("hddGb")
-	protected void initBinder(WebDataBinder binder){
-	   binder.setValidator(new HddValidator(hddGbService));
-	}
-
-	@RequestMapping("/hdd")
+	@RequestMapping("/typeprocessor")
 	public String show(Model model,
 			@PageableDefault(5) Pageable pageable,
-			@ModelAttribute(value="filter") HddFilterForm form){
-		model.addAttribute("page", hddGbService.findAll(pageable, form));
-		model.addAttribute("hdds", TypeHdd.values());
-		return "hdd";
+			@ModelAttribute(value="filter") TypeProcessorFilterForm form){
+		model.addAttribute("page", typeprocessorService.findAll(pageable, form));
+		return "typeprocessor";
 	}
 	
-//	private String getParams(Pageable pageable, HddFilterForm form){
+//	private String getParams(Pageable pageable, TypeProcessorFilterForm form){
 //		StringBuilder buffer = new StringBuilder();
 //		buffer.append("?page=");
 //		buffer.append(String.valueOf(pageable.getPageNumber()+1));

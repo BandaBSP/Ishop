@@ -1,4 +1,4 @@
-package ua.controller;
+package ua.controllerUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -8,39 +8,36 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ua.form.filter.ProcessorFilterForm;
-import ua.service.ProcessorService;
-import ua.service.TypeProcessorService;
-import ua.service.ÑoreProcessorService;
+import ua.form.RamForm;
+import ua.form.filter.RamFilterForm;
+import ua.service.RamServiñe;
 
 @Controller
-public class ProcessorUserController {
+public class RamUserController {
 	
 	@Autowired
-	private ProcessorService processorService;
+	private RamServiñe ramService;
 	
-	@Autowired
-	private TypeProcessorService typeprocessorService;
-	
-	@Autowired
-	private ÑoreProcessorService coreprocessorService;
+	@ModelAttribute("ram")
+	public RamForm getForm(RamForm form){
+		return new RamForm();
+	}
 	
 	@ModelAttribute("filter")
-	public ProcessorFilterForm getFilter(){
-		return new ProcessorFilterForm();
-	}
-
-	@RequestMapping("/processor")
-	public String show(Model model,
-			@PageableDefault() Pageable pageable,
-			@ModelAttribute(value="filter") ProcessorFilterForm form){
-		model.addAttribute("page", processorService.findAll(pageable, form));
-		model.addAttribute("typeprocessors", typeprocessorService.findAll());
-		model.addAttribute("coreprocessors", coreprocessorService.findAll());
-		return "processor";
+	public RamFilterForm getFilter(){
+		return new RamFilterForm();
 	}
 	
-//	private String getParams(Pageable pageable, ProcessorFilterForm form){
+
+	@RequestMapping("/ram")
+	public String show(Model model,
+			@PageableDefault(6) Pageable pageable,
+			@ModelAttribute(value="filter") RamFilterForm form){
+		model.addAttribute("page", ramService.findAll(pageable, form));
+		return "ram";
+	}
+	
+//	private String getParams(Pageable pageable, RamFilterForm form){
 //		StringBuilder buffer = new StringBuilder();
 //		buffer.append("?page=");
 //		buffer.append(String.valueOf(pageable.getPageNumber()+1));

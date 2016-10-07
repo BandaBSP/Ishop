@@ -18,7 +18,7 @@
 					<div class="mainmenu pull-left">
 						<ul class="nav navbar-nav collapse navbar-collapse">
 							<li><a href="/" class="active">Home</a></li>
-							<li><a href="404.html">404</a></li>
+							<li><a href="/404">404</a></li>
 							<li><a href="/contactus">Contact</a></li>
 						</ul>
 					</div>
@@ -110,9 +110,9 @@
 							</div>
 							<div class="choose">
 								<ul class="nav nav-pills nav-justified">
-									<li><a href="#"><i class="fa fa-plus-square"></i>Add
+									<li><a href="/"><i class="fa fa-plus-square"></i>Add
 											to wishlist</a></li>
-									<li><a href="#"><i class="fa fa-plus-square"></i>Add
+									<li><a href="/"><i class="fa fa-plus-square"></i>Add
 											to compare</a></li>
 								</ul>
 							</div>

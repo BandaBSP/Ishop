@@ -21,6 +21,7 @@
    		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 	<context:component-scan base-package="ua.controller" />
+	<context:component-scan base-package="ua.controllerUser" />
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 	</bean>
 	<bean id="tilesConfigurer"
