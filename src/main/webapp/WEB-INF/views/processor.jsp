@@ -48,8 +48,14 @@
 										Sort <span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<custom:sort innerHtml="Name asc" paramValue="ramGb" />
-										<custom:sort innerHtml="Name desc" paramValue="ramGb,desc" />
+										<custom:sort innerHtml="typeprocessor asc"
+											paramValue="typeprocessor.name" />
+										<custom:sort innerHtml="typeprocessor desc"
+											paramValue="typeprocessor.name,desc" />
+										<custom:sort innerHtml="coreprocessor core asc"
+											paramValue="coreprocessor.core" />
+										<custom:sort innerHtml="coreprocessor core desc"
+											paramValue="coreprocessor.core,desc" />
 									</ul>
 								</div>
 							</div>
@@ -124,13 +130,13 @@
 					<div class="col-sm-12">
 						<div class="product-image-wrapper">
 							<c:forEach items="${page.content}" var="processor">
-							<div class="col-md-4">
-								<div class="col-md-12">
-									<img class="img-thumbnail" width="100"
-										src="/images/processor/${processor.id}${processor.path}?version=${processor.version}" />
-								</div>
-								<div class="col-md-12 col-xs-12">${processor.name}</div>
-								<div class="col-md-12 col-xs-12">${processor.price} UAH</div>
+								<div class="col-md-4">
+									<div class="col-md-12">
+										<img class="img-thumbnail" width="100"
+											src="/images/processor/${processor.id}${processor.path}?version=${processor.version}" />
+									</div>
+									<div class="col-md-12 col-xs-12">${processor.name}</div>
+									<div class="col-md-12 col-xs-12">${processor.price}UAH</div>
 								</div>
 							</c:forEach>
 						</div>

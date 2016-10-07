@@ -88,8 +88,8 @@
 					Sort <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<custom:sort innerHtml="Name asc" paramValue="ramGb" />
-					<custom:sort innerHtml="Name desc" paramValue="ramGb,desc" />
+					<custom:sort innerHtml="ramGb asc" paramValue="ramGb" />
+					<custom:sort innerHtml="ramGb desc" paramValue="ramGb,desc" />
 				</ul>
 			</div>
 		</div>

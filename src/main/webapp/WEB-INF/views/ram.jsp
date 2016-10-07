@@ -48,8 +48,8 @@
 										Sort <span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<custom:sort innerHtml="Name asc" paramValue="ramGb" />
-										<custom:sort innerHtml="Name desc" paramValue="ramGb,desc" />
+										<custom:sort innerHtml="ramGb asc" paramValue="ramGb" />
+										<custom:sort innerHtml="ramGb desc" paramValue="ramGb,desc" />
 									</ul>
 								</div>
 							</div>
@@ -124,13 +124,13 @@
 					<div class="col-sm-12">
 						<div class="product-image-wrapper">
 							<c:forEach items="${page.content}" var="ram">
-							<div class="col-md-4">
-								<div class="col-md-12">
-									<img class="img-thumbnail" width="100"
-										src="/images/ram/${ram.id}${ram.path}?version=${ram.version}" />
-								</div>
-								<div class="col-md-12 col-xs-12">${ram.ramGb} Gb</div>
-								<div class="col-md-12 col-xs-12">${ram.price} UAH</div>
+								<div class="col-md-4">
+									<div class="col-md-12">
+										<img class="img-thumbnail" width="100"
+											src="/images/ram/${ram.id}${ram.path}?version=${ram.version}" />
+									</div>
+									<div class="col-md-12 col-xs-12">${ram.ramGb}Gb</div>
+									<div class="col-md-12 col-xs-12">${ram.price}UAH</div>
 								</div>
 							</c:forEach>
 						</div>

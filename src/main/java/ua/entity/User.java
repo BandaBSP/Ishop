@@ -22,6 +22,18 @@ public class User implements UserDetails{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
+//	@OneToMany(mappedBy = "user")
+//	private List<Orders> orders = new ArrayList<Orders>();
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	private String login;
 	
@@ -30,6 +42,18 @@ public class User implements UserDetails{
 	private String password;
 	@Enumerated
 	private Role role;
+	
+	
+
+
+
+//	public List<Orders> getOrders() {
+//		return orders;
+//	}
+//
+//	public void setOrders(List<Orders> orders) {
+//		this.orders = orders;
+//	}
 
 	public int getId() {
 		return id;

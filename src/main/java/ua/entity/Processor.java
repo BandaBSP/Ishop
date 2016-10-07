@@ -23,6 +23,7 @@ public class Processor {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private TypeProcessor typeprocessor;
+	
 
 	@OneToMany(mappedBy = "processor")
 	private List<Komputer> komputers = new ArrayList<Komputer>();
@@ -39,6 +40,8 @@ private int price;
 	
 
 	
+
+
 
 
 	public int getPrice() {

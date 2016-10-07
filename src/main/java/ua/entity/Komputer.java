@@ -29,9 +29,10 @@ public class Komputer {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Processor processor;
-
-	// @OneToMany(mappedBy = "komputer")
-	// private List<User> komputers = new ArrayList<User>();
+	
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	private Orders order;
+	
 
 	private int price;
 
@@ -40,6 +41,14 @@ public class Komputer {
 	private String path;
 	
 	
+
+//	public Orders getOrder() {
+//		return order;
+//	}
+//
+//	public void setOrder(Orders order) {
+//		this.order = order;
+//	}
 
 	public int getPrice() {
 		return price;

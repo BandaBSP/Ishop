@@ -93,9 +93,9 @@
 					Sort <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					 <%-- <custom:sort innerHtml="typeprocessor asc" paramValue="typeprocessor.name"/>
-						<custom:sort innerHtml="typeprocessor desc" paramValue="typeprocessor.name,desc"/>
-						 <custom:sort innerHtml="coreprocessor core asc" paramValue="coreprocessor.core"/>
+				 <custom:sort innerHtml="price asc" paramValue="price"/>
+						<custom:sort innerHtml="price desc" paramValue="price,desc"/>
+			<%-- 			 <custom:sort innerHtml="coreprocessor core asc" paramValue="coreprocessor.core"/>
 						<custom:sort innerHtml="coreprocessor core desc" paramValue="coreprocessor.core,desc"/> --%>
 				</ul>
 			</div>

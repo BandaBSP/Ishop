@@ -48,8 +48,8 @@
 										Sort <span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<custom:sort innerHtml="Name asc" paramValue="hddGb" />
-										<custom:sort innerHtml="Name desc" paramValue="hddGb,desc" />
+										<custom:sort innerHtml="hddGb asc" paramValue="hddGb" />
+										<custom:sort innerHtml="hddGb desc" paramValue="hddGb,desc" />
 									</ul>
 								</div>
 							</div>
@@ -124,13 +124,14 @@
 					<div class="col-sm-12">
 						<div class="product-image-wrapper">
 							<c:forEach items="${page.content}" var="hdd">
-							<div class="col-md-4">
-								<div class="col-md-12">
-									<img class="img-thumbnail" width="100"	src="/images/hdd/${hdd.id}${hdd.path}?version=${hdd.version}" />
-								<div class="col-md-12 col-xs-12">${hdd.hddGb} Gb</div>
-								<div class="col-md-12 col-xs-12">${hdd.typeHdd}</div>
-								<div class="col-md-12 col-xs-12">${hdd.price} UAH</div>
-								</div>
+								<div class="col-md-4">
+									<div class="col-md-12">
+										<img class="img-thumbnail" width="100"
+											src="/images/hdd/${hdd.id}${hdd.path}?version=${hdd.version}" />
+										<div class="col-md-12 col-xs-12">${hdd.hddGb}Gb</div>
+										<div class="col-md-12 col-xs-12">${hdd.typeHdd}</div>
+										<div class="col-md-12 col-xs-12">${hdd.price}UAH</div>
+									</div>
 								</div>
 							</c:forEach>
 						</div>
