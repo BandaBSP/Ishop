@@ -30,19 +30,47 @@ public class Komputer {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Processor processor;
 
-//	@OneToMany(mappedBy = "komputer")
-//	private List<User> komputers = new ArrayList<User>();
+	// @OneToMany(mappedBy = "komputer")
+	// private List<User> komputers = new ArrayList<User>();
 
-	private String price;
+	private int price;
+
+	private int version;
+
+	private String path;
+	
+	
+
+	public int getPrice() {
+		return price;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
 
 	public Komputer() {
 		super();
 	}
-	
-	
 
 	public Komputer(int id, Hdd hdd, Ram ram, VideoAdapter videoadapter,
-			Processor processor, String price) {
+			Processor processor, int price) {
 		super();
 		this.id = id;
 		this.hdd = hdd;
@@ -52,11 +80,9 @@ public class Komputer {
 		this.price = price;
 	}
 
-
-
 	public Komputer(int id, Hdd hdd, OpticalDrive opticaldrive, Ram ram,
 			VideoAdapter videoadapter, Processor processor,
-			List<User> komputers, String price) {
+			List<User> komputers, int price) {
 		super();
 		this.id = id;
 		this.hdd = hdd;
@@ -64,13 +90,9 @@ public class Komputer {
 		this.ram = ram;
 		this.videoadapter = videoadapter;
 		this.processor = processor;
-//		this.komputers = komputers;
+		// this.komputers = komputers;
 		this.price = price;
 	}
-
-	
-
-
 
 	public Komputer(Hdd hdd, Ram ram, VideoAdapter videoadapter,
 			Processor processor) {
@@ -80,8 +102,6 @@ public class Komputer {
 		this.videoadapter = videoadapter;
 		this.processor = processor;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -130,28 +150,21 @@ public class Komputer {
 	public void setProcessor(Processor processor) {
 		this.processor = processor;
 	}
-//
-//	public List<User> getKomputers() {
-//		return komputers;
-//	}
-//
-//	public void setKomputers(List<User> komputers) {
-//		this.komputers = komputers;
-//	}
 
-	public String getPrice() {
-		return price;
-	}
+	//
+	// public List<User> getKomputers() {
+	// return komputers;
+	// }
+	//
+	// public void setKomputers(List<User> komputers) {
+	// this.komputers = komputers;
+	// }
 
-	public void setPrice(String price) {
-		this.price = price;
-	}
+	
 
-//	public void setPrice(String valueOf) {
-//		
-//	}
-
-
+	// public void setPrice(String valueOf) {
+	//
+	// }
 
 	@Override
 	public int hashCode() {
@@ -160,8 +173,6 @@ public class Komputer {
 		result = prime * result + id;
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -177,6 +188,4 @@ public class Komputer {
 		return true;
 	}
 
-	
-	
 }

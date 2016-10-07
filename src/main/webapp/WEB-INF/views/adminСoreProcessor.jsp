@@ -37,13 +37,19 @@
 	<div class="col-md-7 col-xs-12">
 		<div class="col-md-12 col-xs-12">
 			<form:form action="/admin/coreprocessor" method="post"
-				class="form-inline" modelAttribute="coreprocessor">
+				class="form-inline" modelAttribute="coreprocessor" enctype="multipart/form-data">
 				<form:hidden path="id" />
 				<custom:hiddenInputs excludeParams="core, id" />
 				<div class="form-group">
 					<form:input id="core" path="core" placeholder="coreprocessor core"
 						class="form-control" />
 					<label for="core"><form:errors path="core" /></label>
+					<form:input id="price" path="price" placeholder="price"
+						class="form-control" />
+					<label
+						class="btn btn-default btn-file"> Browse <input
+						type="file" name="file" style="display: none;">
+					</label>
 					<button type="submit" class="btn btn-primary">Create coreprocessor</button>
 				</div>
 			</form:form>
@@ -58,6 +64,7 @@
 			<h4>Update</h4>
 		</div>
 		<c:forEach items="${page.content}" var="coreprocessor">
+		<div class="col-md-3"><img class="img-thumbnail" width="100" src="/images/coreprocessor/${coreprocessor.id}${coreprocessor.path}?version=${coreprocessor.version}" /></div>
 			<div class="col-md-4 col-xs-4">${coreprocessor.core}</div>
 			<div class="col-md-4 col-xs-4">
 				<a

@@ -43,9 +43,10 @@
 				<div class="form-group">
 					<form:input id="ramGb" path="ramGb" placeholder="ram name"
 						class="form-control" />
+					<label for="ramGb"><form:errors path="ramGb" /></label> 
 						<form:input id="price" path="price" placeholder="price"
 						class="form-control" />
-					<label for="ramGb"><form:errors path="ramGb" /></label> <label
+					<label
 						class="btn btn-default btn-file"> Browse <input
 						type="file" name="file" style="display: none;">
 					</label>

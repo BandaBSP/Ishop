@@ -22,6 +22,37 @@ public class TypeProcessor {
 	private List<Processor> procesors = new ArrayList<Processor>();
 
 	private String name;
+	
+private int price;
+	
+	private int version;
+	
+	private String path;
+	
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
 
 	public TypeProcessor() {
 		super();

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ua.entity.VideoAdapter;
+import ua.form.VideoAdapterForm;
 import ua.form.filter.VideoAdapterFilterForm;
 import ua.service.VideoAdapterService;
 import ua.service.implementation.validator.VideoAdapterValidator;
@@ -29,8 +29,8 @@ public class VideoAdapterController {
 	private VideoAdapterService videoadapterService;
 
 	@ModelAttribute("videoadapter")
-	public VideoAdapter getForm() {
-		return new VideoAdapter();
+	public VideoAdapterForm getForm() {
+		return new VideoAdapterForm();
 	}
 
 	@ModelAttribute("filter")
@@ -69,7 +69,7 @@ public class VideoAdapterController {
 
 	@RequestMapping(value = "/admin/videoadapter", method = RequestMethod.POST)
 	public String save(
-			@ModelAttribute("videoadapter") @Valid VideoAdapter videoadapter,
+			@ModelAttribute("videoadapter") @Valid VideoAdapterForm videoadapter,
 			BindingResult br, @PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value = "filter") VideoAdapterFilterForm form,
 			Model model) {

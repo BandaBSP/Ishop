@@ -13,16 +13,18 @@ import ua.form.filter.ÑoreProcessorFilterForm;
 public interface ÑoreProcessorService {
 
 	void save(ÑoreProcessorForm coreprocessor);
+	
+	ÑoreProcessor findByName(String ramGb);
 
-	ÑoreProcessor findByName(String core);
+	void delete(String ramGb);
 
-	void delete(String core);
 
 	List<ÑoreProcessor> findAll();
 
 	void delete(int id);
 
 	ÑoreProcessorForm findOne(int id);
+	
 	ÑoreProcessor findOne1(int id);
 	
 

@@ -28,7 +28,7 @@
 
 				<div class="col-sm-3">
 					<div class="search_box pull-right">
-						<form:form action="/hdd" class="form-inline" method="get"
+						<form:form action="/komputer" class="form-inline" method="get"
 							modelAttribute="filter">
 							<custom:hiddenInputs excludeParams="search" />
 							<div class="form-group">
@@ -48,8 +48,8 @@
 										Sort <span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<custom:sort innerHtml="Name asc" paramValue="hddGb" />
-										<custom:sort innerHtml="Name desc" paramValue="hddGb,desc" />
+										<custom:sort innerHtml="Name asc" paramValue="price" />
+										<custom:sort innerHtml="Name desc" paramValue="price,desc" />
 									</ul>
 								</div>
 							</div>
@@ -96,7 +96,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a href="/pc">Персональні Комп`ютери</a>
+									<a href="/komputer">Персональні Комп`ютери</a>
 								</h4>
 							</div>
 						</div>
@@ -123,14 +123,18 @@
 					<h2 class="title text-center">Features Items</h2>
 					<div class="col-sm-12">
 						<div class="product-image-wrapper">
-							<c:forEach items="${page.content}" var="hdd">
+							<c:forEach items="${page.content}" var="komputer">
 							<div class="col-md-4">
 								<div class="col-md-12">
-									<img class="img-thumbnail" width="100"	src="/images/hdd/${hdd.id}${hdd.path}?version=${hdd.version}" />
-								<div class="col-md-12 col-xs-12">${hdd.hddGb} Gb</div>
-								<div class="col-md-12 col-xs-12">${hdd.typeHdd}</div>
-								<div class="col-md-12 col-xs-12">${hdd.price} UAH</div>
-								</div>
+									<img class="img-thumbnail" width="100"
+										src="/images/komputer/${komputer.id}${komputer.path}?version=${komputer.version}" />
+								</div> 
+								<div class="col-md-12 col-xs-12">${komputer.hdd.hddGb}</div>
+								<div class="col-md-12 col-xs-12">${komputer.hdd.typeHdd}</div>
+								<div class="col-md-12 col-xs-12">${komputer.ram.ramGb} Gb</div>
+								<div class="col-md-12 col-xs-12">${komputer.videoadapter.name}</div>
+								<div class="col-md-12 col-xs-12">${komputer.processor.name} </div>
+								<div class="col-md-12 col-xs-12">${komputer.price} UAH</div>
 								</div>
 							</c:forEach>
 						</div>

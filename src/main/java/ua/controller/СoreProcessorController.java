@@ -31,7 +31,7 @@ public class ÑoreProcessorController {
 	private ÑoreProcessorService coreprocessorService;
 	
 	@ModelAttribute("coreprocessor")
-	public ÑoreProcessorForm getForm(ÑoreProcessorForm form){
+	public ÑoreProcessorForm getForm(){
 		return new ÑoreProcessorForm();
 	}
 	

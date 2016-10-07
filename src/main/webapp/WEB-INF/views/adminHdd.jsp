@@ -37,13 +37,19 @@
 	<div class="col-md-7 col-xs-12">
 		<div class="col-md-12 col-xs-12">
 			<form:form action="/admin/hdd" method="post" class="form-inline"
-				modelAttribute="hdd">
+				modelAttribute="hdd" enctype="multipart/form-data">
 				<form:hidden path="id" />
 				<custom:hiddenInputs excludeParams="hddGb,typeHdd, id" />
 				<div class="form-group">
 					<form:input id="hddGb" path="hddGb" placeholder="hdd name" class="form-control" />
 					<form:select path="typeHdd" items="${hdds}"></form:select>
+					<form:input id="price" path="price" placeholder="price"
+						class="form-control" />
 						<label for="hddGb"><form:errors path="hddGb" /></label>
+						<label
+						class="btn btn-default btn-file"> Browse <input
+						type="file" name="file" style="display: none;">
+					</label>
 						<button type="submit" class="btn btn-primary">Create hdd</button>
 				</div>
 			</form:form>
@@ -58,7 +64,8 @@
 			<h4>Update</h4>
 		</div>
 		<c:forEach items="${page.content}" var="hdd">
-			<div class="col-md-4 col-xs-4">${hdd.hddGb}${hdd.typeHdd}</div>
+		<div class="col-md-3"><img class="img-thumbnail" width="100" src="/images/hdd/${hdd.id}${hdd.path}?version=${hdd.version}" /></div>
+			<div class="col-md-4 col-xs-4">${hdd.hddGb}${hdd.typeHdd} ${hdd.price} </div>
 			<div class="col-md-4 col-xs-4">
 				<a href="/admin/hdd/delete/${hdd.id}<custom:allParams/>">delete</a>
 			</div>

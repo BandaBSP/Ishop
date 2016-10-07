@@ -36,7 +36,7 @@
 	</div>
 	<div class="col-md-7 col-xs-12">
 		<div class="col-md-12 col-xs-12">
-	<form:form action="/admin/processor" method="post" modelAttribute="processor" class="form-inline" >
+	<form:form action="/admin/processor" method="post" modelAttribute="processor" class="form-inline" enctype="multipart/form-data">
 		<form:errors path="*"/>
 		<form:hidden path="id" />
 		<custom:hiddenInputs excludeParams=" id,  typeprocessor, coreprocessor"/>
@@ -45,7 +45,11 @@
 			</form:select>
 			<form:select path="typeprocessor" items="${typeprocessors}" itemLabel="name" itemValue="id">
 			</form:select>
-			
+			<form:input id="price" path="price" placeholder="price"
+						class="form-control" />
+			<label class="btn btn-default btn-file"> Browse <input
+						type="file" name="file" style="display: none;">
+					</label>
 			<button type="submit" class="btn btn-primary">Create Processor</button>
 			</div>
 	</form:form>
@@ -60,7 +64,8 @@
 			<h4>Update</h4>
 		</div>
 		<c:forEach items="${page.content}" var="processor">
-			<div class="col-md-4 col-xs-4">${processor.name} </div>
+		<div class="col-md-3"><img class="img-thumbnail" width="100" src="/images/processor/${processor.id}${processor.path}?version=${processor.version}" /></div>
+			<div class="col-md-4 col-xs-4">${processor.name} ${processor.price} </div>
 			<div class="col-md-4 col-xs-4">
 				<a
 					href="/admin/processor/delete/${processor.id}<custom:allParams/>">delete</a>

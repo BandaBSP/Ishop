@@ -28,7 +28,7 @@
 
 				<div class="col-sm-3">
 					<div class="search_box pull-right">
-						<form:form action="/hdd" class="form-inline" method="get"
+						<form:form action="/videoadapter" class="form-inline" method="get"
 							modelAttribute="filter">
 							<custom:hiddenInputs excludeParams="search" />
 							<div class="form-group">
@@ -48,8 +48,8 @@
 										Sort <span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<custom:sort innerHtml="Name asc" paramValue="hddGb" />
-										<custom:sort innerHtml="Name desc" paramValue="hddGb,desc" />
+										<custom:sort innerHtml="Name asc" paramValue="name" />
+										<custom:sort innerHtml="Name desc" paramValue="name,desc" />
 									</ul>
 								</div>
 							</div>
@@ -123,14 +123,14 @@
 					<h2 class="title text-center">Features Items</h2>
 					<div class="col-sm-12">
 						<div class="product-image-wrapper">
-							<c:forEach items="${page.content}" var="hdd">
+							<c:forEach items="${page.content}" var="videoadapter">
 							<div class="col-md-4">
 								<div class="col-md-12">
-									<img class="img-thumbnail" width="100"	src="/images/hdd/${hdd.id}${hdd.path}?version=${hdd.version}" />
-								<div class="col-md-12 col-xs-12">${hdd.hddGb} Gb</div>
-								<div class="col-md-12 col-xs-12">${hdd.typeHdd}</div>
-								<div class="col-md-12 col-xs-12">${hdd.price} UAH</div>
+									<img class="img-thumbnail" width="100"
+										src="/images/videoadapter/${videoadapter.id}${videoadapter.path}?version=${videoadapter.version}" />
 								</div>
+								<div class="col-md-12 col-xs-12">${videoadapter.name} </div>
+								<div class="col-md-12 col-xs-12">${videoadapter.price} UAH</div>
 								</div>
 							</c:forEach>
 						</div>

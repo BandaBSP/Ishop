@@ -12,12 +12,17 @@ import ua.entity.ÑoreProcessor;
 import ua.form.ÑoreProcessorForm;
 import ua.form.filter.ÑoreProcessorFilterForm;
 import ua.repository.ÑoreProcessorRepository;
+import ua.service.FileWriter;
+import ua.service.FileWriter.Folder;
 import ua.service.ÑoreProcessorService;
 import ua.service.implementation.specification.ÑoreProcessorFilterAdapter;
 
 @Service
 @Transactional
 public class ÑoreProcessorImpl implements ÑoreProcessorService {
+	
+	@Autowired
+	private FileWriter fileWriter;
 
 	@Autowired
 	private ÑoreProcessorRepository coreprocessorRepository;
@@ -27,18 +32,18 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 		ÑoreProcessor entity = new ÑoreProcessor();
 		entity.setCore(Integer.valueOf(form.getCore()));
 		entity.setId(form.getId());
-		coreprocessorRepository.save(entity);
+		entity.setPrice(Integer.valueOf(form.getPrice()));
+		entity.setPath(form.getPath());
+		entity.setVersion(form.getVersion());
+		coreprocessorRepository.saveAndFlush(entity);
+		String extension = fileWriter.write(Folder.ÑOREPPROCESSOR, form.getFile(), entity.getId());
+		if(extension!=null){
+			entity.setVersion(form.getVersion()+1);
+			entity.setPath(extension);
+			coreprocessorRepository.save(entity);
+			}
 	}
 
-//	@Override
-//	public ÑoreProcessor findByName(String name) {
-//		return coreprocessorRepository.findByName(name);
-//	}
-
-//	@Override
-//	public void delete(String name) {
-//		coreprocessorRepository.delete(name);
-//	}
 
 	@Override
 	public List<ÑoreProcessor> findAll() {
@@ -56,6 +61,9 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 		ÑoreProcessorForm form = new ÑoreProcessorForm();
 		form.setCore(String.valueOf(entity.getCore()));
 		form.setId(entity.getId());
+		form.setPrice(String.valueOf(entity.getPrice()));
+		form.setPath(entity.getPath());
+		form.setVersion(entity.getVersion());
 		return form;
 	}
 
@@ -71,20 +79,21 @@ public class ÑoreProcessorImpl implements ÑoreProcessorService {
 	}
 
 	@Override
-	public ÑoreProcessor findByName(String core) {
+	public ÑoreProcessor findOne1(int id) {
+		return coreprocessorRepository.findOne(id);
+	}
+
+	@Override
+	public ÑoreProcessor findByName(String ramGb) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public void delete(String core) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	public ÑoreProcessor findOne1(int id) {
-		return coreprocessorRepository.findOne(id);
+	public void delete(String ramGb) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

@@ -12,10 +12,10 @@ import javax.mail.internet.MimeMessage;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
- 
+
 @Service
 public class MailSender {
- 
+
     private final static String USERNAME = "pro100pr1@gmail.com";
     private final static String PASSWORD = "pro100pr4";
     @Async
@@ -25,9 +25,9 @@ public class MailSender {
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.port", "465");
         properties.setProperty("mail.smtp.host", "smtp.gmail.com");
+      properties.setProperty("mail.smtp.ssl.enable", "true");
         properties.setProperty("mail.smtp.socketFactory.port", "465");
-        properties.setProperty("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
+        properties.setProperty("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
         Session session = Session.getDefaultInstance(properties,
                 new Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {

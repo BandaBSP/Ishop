@@ -18,12 +18,17 @@ import ua.repository.KomputerRepository;
 import ua.repository.ProcessorRepository;
 import ua.repository.RamRepository;
 import ua.repository.VideoAdapterRepository;
+import ua.service.FileWriter;
+import ua.service.FileWriter.Folder;
 import ua.service.KomputerService;
 import ua.service.implementation.specification.KomputerFilterAdapter;
 
 @Service
 @Transactional
 public class KomputerImpl implements KomputerService {
+	
+	@Autowired
+	private FileWriter fileWriter;
 
 	@Resource
 	private KomputerRepository komputerRepository;
@@ -42,17 +47,24 @@ public class KomputerImpl implements KomputerService {
 
 	@Override
 	public void save(KomputerForm form) {
-		
 		Komputer entity = new Komputer();
 		entity.setHdd((form.getHdd()));
 		entity.setRam(form.getRam());
 		entity.setVideoadapter(form.getVideoadapter());
 		entity.setProcessor(form.getProcessor());
-		entity.setPrice(form.getPrice());
+		entity.setPrice(Integer.valueOf(form.getPrice()));
 		entity.setId(form.getId());
-		komputerRepository.save(entity);
+		entity.setPrice(Integer.valueOf(form.getPrice()));
+		entity.setPath(form.getPath());
+		entity.setVersion(form.getVersion());
+		komputerRepository.saveAndFlush(entity);
+		String extension = fileWriter.write(Folder.KOMPUTER, form.getFile(), entity.getId());
+		if(extension!=null){
+			entity.setVersion(form.getVersion()+1);
+			entity.setPath(extension);
+			komputerRepository.save(entity);
+			}
 	}
-	
 
 	@Override
 	public List<Komputer> findAll() {
@@ -105,6 +117,8 @@ public class KomputerImpl implements KomputerService {
 		form.setProcessor(entity.getProcessor());
 		form.setPrice(String.valueOf(entity.getPrice()));
 		form.setId(entity.getId());
+		form.setPath(entity.getPath());
+		form.setVersion(entity.getVersion());
 		return form;
 	}
 }

@@ -15,7 +15,7 @@ public class TypeProcessorEditor extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		TypeProcessor typeprocessor = typeprocessorService.findOne(Integer
+		TypeProcessor typeprocessor = typeprocessorService.findOne1(Integer
 				.valueOf(text));
 		setValue(typeprocessor);
 	}

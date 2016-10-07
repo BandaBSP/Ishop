@@ -19,9 +19,9 @@
 					</div>
 					<div class="mainmenu pull-left">
 						<ul class="nav navbar-nav collapse navbar-collapse">
-							<li><a href="index.html" class="active">Home</a></li>
+							<li><a href="/" class="active">Home</a></li>
 							<li><a href="404.html">404</a></li>
-							<li><a href="contact-us.html">Contact</a></li>
+							<li><a href="/contactus">Contact</a></li>
 						</ul>
 					</div>
 				</div>
@@ -86,9 +86,9 @@
 								<div class="panel-body">
 									<ul>
 										<li><a href="/hdd">HDDs </a></li>
-										<li><a href="#">Rams </a></li>
-										<li><a href="#">Processors </a></li>
-										<li><a href="#">Video Adapters</a></li>
+										<li><a href="/ram">Rams </a></li>
+										<li><a href="/processor">Processors </a></li>
+										<li><a href="/videoadapter">Video Adapters</a></li>
 									</ul>
 								</div>
 							</div>
@@ -96,7 +96,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a href="#">Персональні Комп`ютери</a>
+									<a href="/komputer">Персональні Комп`ютери</a>
 								</h4>
 							</div>
 						</div>

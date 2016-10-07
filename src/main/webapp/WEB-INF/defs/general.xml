@@ -14,9 +14,28 @@
         <put-attribute name="body" value="/WEB-INF/views/index.jsp" />
     </definition>
     
+    <definition name="404" extends="common">
+        <put-attribute name="title" value="index" />
+        <put-attribute name="body" value="/WEB-INF/views/404.jsp" />
+    </definition>
+    
     <definition name="coreprocessor" extends="common">
         <put-attribute name="title" value="I gdsddfd" />
         <put-attribute name="body" value="/WEB-INF/views/coreprocessor.jsp" />
+    </definition>
+    
+        <definition name="komputer" extends="common">
+        <put-attribute name="title" value="I gdsddfd" />
+        <put-attribute name="body" value="/WEB-INF/views/komputer.jsp" />
+    </definition> 
+    
+    <definition name="processor" extends="common">
+        <put-attribute name="title" value="I gdsddfd" />
+        <put-attribute name="body" value="/WEB-INF/views/processor.jsp" />
+    </definition>
+      <definition name="videoadapter" extends="common">
+        <put-attribute name="title" value="I gdsddfd" />
+        <put-attribute name="body" value="/WEB-INF/views/videoadapter.jsp" />
     </definition>
     
      <definition name="hdd" extends="common">

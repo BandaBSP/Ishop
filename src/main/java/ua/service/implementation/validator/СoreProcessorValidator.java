@@ -1,8 +1,5 @@
 package ua.service.implementation.validator;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -13,7 +10,7 @@ import ua.service.ÑoreProcessorService;
 public class ÑoreProcessorValidator implements Validator {
 
 	private final ÑoreProcessorService coreprocessorService;
-	private static final Pattern p = Pattern.compile("^[0-9]{1,2}$");
+//	private static final Pattern p = Pattern.compile("^[0-9]{1,2}$");
 
 	public ÑoreProcessorValidator(ÑoreProcessorService coreprocessorService) {
 		this.coreprocessorService = coreprocessorService;
@@ -30,10 +27,10 @@ public class ÑoreProcessorValidator implements Validator {
 		if(form.getId()==0)if(coreprocessorService.findByName(form.getCore())!=null){
 			errors.rejectValue("core", "", "ÑoreProcessor already exists");
 		}
-		Matcher m = p.matcher(form.getCore());
-		if(!m.matches()){
-			errors.rejectValue("core", "", "core format is 1 to 99");
-		}
+//		Matcher m = p.matcher(form.getCore());
+//		if(!m.matches()){
+//			errors.rejectValue("core", "", "core format is 1 to 99");
+//		}
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "core", "", "Can`t be empty");
 	}
 }

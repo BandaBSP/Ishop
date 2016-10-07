@@ -15,12 +15,21 @@ public class ProcessorForm {
 
 	private String name;
 
-	private String path;
+	private String price;
 
 	private int version;
 
+	private String path;
+
 	private MultipartFile file;
 	
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
 	public String getName() {
 		return name;

@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ua.entity.Processor;
 import ua.entity.TypeProcessor;
 import ua.entity.ÑoreProcessor;
+import ua.form.ProcessorForm;
 import ua.form.filter.ProcessorFilterForm;
 import ua.service.ProcessorService;
 import ua.service.TypeProcessorService;
@@ -42,8 +42,8 @@ public class ProcessorController {
 	
 	
 	@ModelAttribute("processor")
-	public Processor getForm(){
-		return new Processor();
+	public ProcessorForm getForm(){
+		return new ProcessorForm();
 	}
 	
 	@ModelAttribute("filter")
@@ -90,7 +90,7 @@ public class ProcessorController {
 	}
 	
 	@RequestMapping(value= "/admin/processor", method=RequestMethod.POST)
-	public String save(@ModelAttribute("processor") @Valid Processor processor,
+	public String save(@ModelAttribute("processor") @Valid ProcessorForm processor,
 			BindingResult br,
 			@PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value="filter") ProcessorFilterForm form,

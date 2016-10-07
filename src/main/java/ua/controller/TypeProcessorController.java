@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ua.entity.TypeProcessor;
+import ua.form.TypeProcessorForm;
 import ua.form.filter.TypeProcessorFilterForm;
 import ua.service.TypeProcessorService;
 import ua.service.implementation.validator.TypeProcessorValidator;
@@ -29,8 +29,8 @@ public class TypeProcessorController {
 	private TypeProcessorService typeprocessorService;
 	
 	@ModelAttribute("typeprocessor")
-	public TypeProcessor getForm(){
-		return new TypeProcessor();
+	public TypeProcessorForm getForm(){
+		return new TypeProcessorForm();
 	}
 	
 	@ModelAttribute("filter")
@@ -70,7 +70,7 @@ public class TypeProcessorController {
 	}
 	
 	@RequestMapping(value= "/admin/typeprocessor", method=RequestMethod.POST)
-	public String save(@ModelAttribute("typeprocessor") @Valid TypeProcessor typeprocessor,
+	public String save(@ModelAttribute("typeprocessor") @Valid TypeProcessorForm typeprocessor,
 			BindingResult br,
 			@PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value="filter") TypeProcessorFilterForm form,

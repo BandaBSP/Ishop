@@ -6,11 +6,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.entity.VideoAdapter;
+import ua.form.VideoAdapterForm;
 import ua.form.filter.VideoAdapterFilterForm;
 
 public interface VideoAdapterService {
 
-	void save(VideoAdapter videoadapter);
+	void save(VideoAdapterForm videoadapter);
 
 	VideoAdapter findByName(String name);
 
@@ -19,8 +20,10 @@ public interface VideoAdapterService {
 	List<VideoAdapter> findAll();
 
 	void delete(int id);
+	
+	VideoAdapterForm findOne(int id);
 
-	VideoAdapter findOne(int id);
+	VideoAdapter findOne1(int id);
 
 	Page<VideoAdapter> findAll(Pageable pageable);
 

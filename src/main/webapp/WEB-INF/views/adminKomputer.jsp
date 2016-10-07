@@ -36,7 +36,7 @@
 	</div>
 	<div class="col-md-7 col-xs-12">
 		<div class="col-md-12 col-xs-12">
-	<form:form action="/admin/komputer" method="post" modelAttribute="komputer" class="form-inline" >
+	<form:form action="/admin/komputer" method="post" modelAttribute="komputer" class="form-inline" enctype="multipart/form-data" >
 		<form:errors path="*"/>
 		<form:hidden path="id" />
 		<custom:hiddenInputs excludeParams=" id,  hdd, ram, videoadapter, processor, price "/>
@@ -51,6 +51,10 @@
 			</form:select>
 			<form:input id="price" path="price" placeholder="processor name" class="form-control" />
 					<label for="price"><form:errors path="price" /></label>
+					<label
+						class="btn btn-default btn-file"> Browse <input
+						type="file" name="file" style="display: none;">
+					</label>
 			<button type="submit" class="btn btn-primary">Create Komputer</button>
 			</div>
 	</form:form>
@@ -65,14 +69,15 @@
 			<h4>Update</h4>
 		</div>
 		<c:forEach items="${page.content}" var="komputer">
+		<div class="col-md-3"><img class="img-thumbnail" width="100" src="/images/komputer/${komputer.id}${komputer.path}?version=${komputer.version}" /></div>
 			<div class="col-md-4 col-xs-4">${komputer.hdd.hddGb} ${komputer.hdd.typeHdd} ${komputer.ram.ramGb} ${komputer.videoadapter.name} ${komputer.processor.name} </div>
 			<div class="col-md-4 col-xs-4">
 				<a
-					href="/admin/processor/delete/${komputer.id}<custom:allParams/>">delete</a>
+					href="/admin/komputer/delete/${komputer.id}<custom:allParams/>">delete</a>
 			</div>
 			<div class="col-md-4 col-xs-4">
 				<a
-					href="/admin/processor/update/${komputer.id}<custom:allParams/>">update</a>
+					href="/admin/komputer/update/${komputer.id}<custom:allParams/>">update</a>
 			</div>
 		</c:forEach>
 		 <div class="col-md-12 col-xs-12 text-center">

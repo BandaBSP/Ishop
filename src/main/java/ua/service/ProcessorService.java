@@ -6,12 +6,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.entity.Processor;
+import ua.form.ProcessorForm;
 import ua.form.filter.ProcessorFilterForm;
 
 
 public interface ProcessorService {
 
-	void save(Processor processor);
+	void save(ProcessorForm processor);
 
 	Processor findByName(String name);
 
@@ -20,8 +21,10 @@ public interface ProcessorService {
 	List<Processor> findAll();
 
 	void delete(int id);
+	
+	ProcessorForm findOne(int id);
 
-	Processor findOne(int id);
+	Processor findOne1(int id);
 
 	Page<Processor> findAll(Pageable pageable);
 
