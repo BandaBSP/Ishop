@@ -28,33 +28,33 @@ import ua.service.implementation.validator.СoreProcessorValidator;
 public class СoreProcessorController {
 	
 	@Autowired
-	private СoreProcessorService coreprocessorService;
+	private СoreProcessorService coreprocessorService;  // існує для імпорту всіх сервісів.
 	
-	@ModelAttribute("coreprocessor")
-	public СoreProcessorForm getForm(){
-		return new СoreProcessorForm();
+	@ModelAttribute("coreprocessor")   // модель атрибут використовується на jsp для того шоб предавати іменно форму
+	public СoreProcessorForm getForm(){ // імпортуємо стрінгову форму для інтових значень
+		return new СoreProcessorForm(); // передаєм пусту форму з стрінговими полями
 	}
 	
-	@ModelAttribute("filter")
-	public СoreProcessorFilterForm getFilter(){
-		return new СoreProcessorFilterForm();
+	@ModelAttribute("filter") // використовується для jsp для передачі параметрів фільтра
+	public СoreProcessorFilterForm getFilter(){ // імопртуєм форму для фільтрування
+		return new СoreProcessorFilterForm();// передаєм пустий фільтр
 	}
 	
-	@InitBinder("coreprocessor")
+	@InitBinder("coreprocessor") 
 	protected void initBinder(WebDataBinder binder){
 		binder.registerCustomEditor(СoreProcessor.class, new СoreProcessorEditor(coreprocessorService));
 	   binder.setValidator(new СoreProcessorValidator(coreprocessorService));
 	}
 
-	@RequestMapping("/admin/coreprocessor")
+	@RequestMapping("/admin/coreprocessor") // силка в браузері 
 	public String show(Model model,
-			@PageableDefault(5) Pageable pageable,
+			@PageableDefault(5) Pageable pageable, //@PageableDefault передає вефолтне значення скільки елементів буде на сторінці
 			@ModelAttribute(value="filter") СoreProcessorFilterForm form){
 		model.addAttribute("page", coreprocessorService.findAll(pageable, form));
 		return "adminСoreProcessor";
 	}
 	
-	@RequestMapping("/admin/coreprocessor/delete/{id}")
+	@RequestMapping("/admin/coreprocessor/delete/{id}")// силка в браузері  
 	public String delete(@PathVariable int id,
 			@PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value="filter") СoreProcessorFilterForm form){
